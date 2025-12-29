@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::Layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Earthquake Map - RapidQuake</title>
+</head>
+
+<body>
+    <section>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <link rel="stylesheet" th:href="@{/css/User/userMap.css}">
+        
+        <div class="map-container">
+            <div class="info-bar">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="status-indicator"></div>
+                        <span class="info-text">Live Data</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span class="info-text" id="earthquake-count">Loading...</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-solid fa-clock"></i>
+                        <span class="info-text" id="last-update">--</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span class="info-text" id="user-location-status">Getting location...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="map"></div>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Loading earthquake data...</p>
+            </div>
+
+            <div class="controls">
+                <button class="control-btn" onclick="goToUserLocation()" title="Go to my location">
+                    <i class="fa-solid fa-location-crosshairs"></i>
+                </button>
+                <button class="control-btn retry-btn" onclick="retryLocation()" title="Retry location">
+                    <i class="fa-solid fa-rotate-right"></i>
+                </button>
+            </div>
+
+            <div class="legend">
+                <h3><i class="fa-solid fa-circle-info me-2"></i>Impact Zones</h3>
+                <div class="legend-item">
+                    <div class="legend-circle" style="width: 28px; height: 28px; border-color: #8B0000; background: rgba(139, 0, 0, 0.2);"></div>
+                    <span>8.0+ Great (500km)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-circle" style="width: 24px; height: 24px; border-color: #DC143C; background: rgba(220, 20, 60, 0.2);"></div>
+                    <span>7.0-7.9 Major (250km)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-circle" style="width: 20px; height: 20px; border-color: #FF6347; background: rgba(255, 99, 71, 0.2);"></div>
+                    <span>6.0-6.9 Strong (100km)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-circle" style="width: 16px; height: 16px; border-color: #FFA500; background: rgba(255, 165, 0, 0.2);"></div>
+                    <span>5.0-5.9 Moderate (50km)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-circle" style="width: 12px; height: 12px; border-color: #FFD700; background: rgba(255, 215, 0, 0.2);"></div>
+                    <span>4.0-4.9 Light (20km)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-circle" style="width: 10px; height: 10px; border-color: #A9A9A9; background: rgba(169, 169, 169, 0.2);"></div>
+                    <span>&lt;4.0 Minor</span>
+                </div>
+                <div class="legend-item">
+                    <div style="width: 14px; height: 14px; background: #2196F3; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 8px rgba(33, 150, 243, 0.6);"></div>
+                    <span>Your Location</span>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script th:src="@{/js/User/userMap.js}"></script>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::Layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Contacts - RapidQuake</title>
+</head>
+
+<body>
+    <section>
+        <style>
+            .emergency-hero {
+                background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+                padding: 80px 20px 60px;
+                text-align: center;
+                color: white;
+                margin-top: 60px;
+            }
+
+            .emergency-hero h1 {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+                font-weight: 700;
+            }
+
+            .emergency-hero p {
+                font-size: 1.1rem;
+                opacity: 0.95;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+            .emergency-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 60px 20px;
+            }
+
+            .emergency-alert {
+                background: #fee2e2;
+                border-left: 5px solid #dc2626;
+                padding: 20px 25px;
+                border-radius: 8px;
+                margin-bottom: 40px;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .emergency-alert i {
+                font-size: 2rem;
+                color: #dc2626;
+            }
+
+            .emergency-alert-content h3 {
+                color: #991b1b;
+                margin: 0 0 8px 0;
+                font-size: 1.3rem;
+            }
+
+            .emergency-alert-content p {
+                margin: 0;
+                color: #7f1d1d;
+                font-size: 1rem;
+            }
+
+            .emergency-number {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 15px;
+                background: #dc2626;
+                color: white;
+                padding: 20px;
+                border-radius: 12px;
+                font-size: 2rem;
+                font-weight: 700;
+                margin-bottom: 50px;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+
+            .emergency-number:hover {
+                background: #b91c1c;
+                transform: scale(1.02);
+            }
+
+            .contacts-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 30px;
+                margin-bottom: 50px;
+            }
+
+            .contact-card {
+                background: white;
+                border-radius: 12px;
+                padding: 30px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s;
+            }
+
+            .contact-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            }
+
+            .contact-card-header {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                margin-bottom: 20px;
+                padding-bottom: 15px;
+                border-bottom: 2px solid #f3f4f6;
+            }
+
+            .contact-icon {
+                width: 60px;
+                height: 60px;
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.8rem;
+                color: white;
+            }
+
+            .contact-card-header h3 {
+                margin: 0;
+                font-size: 1.4rem;
+                color: #1f2937;
+            }
+
+            .contact-info {
+                margin-bottom: 15px;
+            }
+
+            .contact-info-item {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 12px 0;
+                border-bottom: 1px solid #f3f4f6;
+            }
+
+            .contact-info-item:last-child {
+                border-bottom: none;
+            }
+
+            .contact-info-item i {
+                color: #667eea;
+                font-size: 1.1rem;
+                width: 20px;
+            }
+
+            .contact-info-item span {
+                color: #4b5563;
+                font-size: 1rem;
+            }
+
+            .contact-info-item a {
+                color: #667eea;
+                text-decoration: none;
+                font-weight: 600;
+                transition: color 0.3s;
+            }
+
+            .contact-info-item a:hover {
+                color: #4c51bf;
+            }
+
+            .regional-section {
+                margin-top: 60px;
+                background: #f9fafb;
+                padding: 50px 30px;
+                border-radius: 16px;
+            }
+
+            .regional-section h2 {
+                text-align: center;
+                font-size: 2rem;
+                margin-bottom: 40px;
+                color: #1f2937;
+            }
+
+            .regional-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 25px;
+            }
+
+            .regional-card {
+                background: white;
+                padding: 25px;
+                border-radius: 10px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            }
+
+            .regional-card h4 {
+                color: #667eea;
+                margin: 0 0 15px 0;
+                font-size: 1.2rem;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .regional-card p {
+                margin: 8px 0;
+                color: #4b5563;
+                display: flex;
+                justify-content: space-between;
+                padding: 8px;
+                background: #f9fafb;
+                border-radius: 6px;
+            }
+
+            .regional-card strong {
+                color: #1f2937;
+            }
+
+            @media (max-width: 768px) {
+                .emergency-hero h1 {
+                    font-size: 2rem;
+                }
+
+                .emergency-number {
+                    font-size: 1.5rem;
+                    padding: 15px;
+                }
+
+                .contacts-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .regional-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .emergency-alert {
+                    flex-direction: column;
+                    text-align: center;
+                }
+            }
+        </style>
+
+        <div class="emergency-hero">
+            <h1><i class="fa-solid fa-phone-volume"></i> Emergency Contacts</h1>
+            <p>Quick access to essential emergency numbers and contacts during earthquakes</p>
+        </div>
+
+        <div class="emergency-container">
+            <div class="emergency-alert">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <div class="emergency-alert-content">
+                    <h3>In Case of Immediate Danger</h3>
+                    <p>If you are in immediate danger or need urgent assistance, call emergency services immediately. Keep your phone charged and accessible at all times.</p>
+                </div>
+            </div>
+
+            <div class="emergency-number" onclick="window.location.href='tel:911'">
+                <i class="fa-solid fa-phone"></i>
+                <span>DIAL 911</span>
+                <i class="fa-solid fa-phone"></i>
+            </div>
+
+            <div class="contacts-grid">
+                <div class="contact-card">
+                    <div class="contact-card-header">
+                        <div class="contact-icon" style="background: #dc2626;">
+                            <i class="fa-solid fa-truck-medical"></i>
+                        </div>
+                        <h3>Emergency Medical</h3>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-info-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <a href="tel:911">911</a>
+                        </div>
+                        <div class="contact-info-item">
+                            <i class="fa-solid fa-phone-volume"></i>
+                            <span>Emergency Hotline: <a href="tel:1-800-MEDICAL">1-800-MEDICAL</a></span>
+                        </div>
+                        <div class="contact-info-item">
+                            <i class="fa-solid fa-clock"></i>
+                            <span>24/7 Available</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-card-header">
+                        <div class="contact-icon" style="background: #ea580c;">
+                            <i class="fa-solid fa-fire-flame-curved"></i>
+                        </div>
+                        <h3>Fire Department</h3>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-info-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <a href="tel:911">911</a>
+                        </div>
+                        <div class="contact-info-item">
+                            <i class="fa-solid fa-phone-volume"></i>
+                            <span>Non-Emergency: <a href="tel:1-800-FIRE-911">1-800-FIRE-911</a></span>
+                        </div>
+                        <div class="contact-info-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>Local Station Locator Available</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-card-header">
+                        <div class="contact-icon" style="background: #2563eb;">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h3>Police Department</h3>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-info-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <a href="tel:911">911</a>
+                        </div>
+                        <div class="contact-info-item">
+                            <i class="fa-solid fa-phone-volume"></i>
+                            <span>Non-Emergency: <a href="tel:311">311</a></span>
+                        </div>
+                        <div class="contact-info-item">
+                            <i class="fa-solid fa-comments"></i>
+                            <span>Text POLICE to 67283</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-card-header">
+                        <div class="contact-icon" style="background: #059669;">
+                            <i class="fa-solid fa-hands-holding-child"></i>
+                        </div>
+                        <h3>Disaster Relief</h3>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-info-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <a href="tel:1-800-RED-CROSS">1-800-RED-CROSS</a>
+                        </div>
+                        <div class="contact-info-item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span><a href="mailto:disaster@redcross.org">disaster@redcross.org</a></span>
+                        </div>
+                        <div class="contact-info-item">
+                            <i class="fa-solid fa-clock"></i>
+                            <span>24/7 Hotline Available</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-card-header">
+                        <div class="contact-icon" style="background: #7c3aed;">
+                            <i class="fa-solid fa-house-crack"></i>
+                        </div>
+                        <h3>FEMA</h3>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-info-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <a href="tel:1-800-621-3362">1-800-621-FEMA</a>
+                        </div>
+                        <div class="contact-info-item">
+                            <i class="fa-solid fa-tty"></i>
+                            <span>TTY: <a href="tel:1-800-462-7585">1-800-462-7585</a></span>
+                        </div>
+                        <div class="contact-info-item">
+                            <i class="fa-solid fa-globe"></i>
+                            <span><a href="https://www.fema.gov" target="_blank">www.fema.gov</a></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-card-header">
+                        <div class="contact-icon" style="background: #0891b2;">
+                            <i class="fa-solid fa-water"></i>
+                        </div>
+                        <h3>Utilities Emergency</h3>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-info-item">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span>Electric: <a href="tel:1-800-POWER-01">1-800-POWER-01</a></span>
+                        </div>
+                        <div class="contact-info-item">
+                            <i class="fa-solid fa-fire-burner"></i>
+                            <span>Gas: <a href="tel:1-800-GAS-LEAK">1-800-GAS-LEAK</a></span>
+                        </div>
+                        <div class="contact-info-item">
+                            <i class="fa-solid fa-droplet"></i>
+                            <span>Water: <a href="tel:1-800-WATER-01">1-800-WATER-01</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="regional-section">
+                <h2><i class="fa-solid fa-map-location-dot"></i> Regional Emergency Centers</h2>
+                <div class="regional-grid">
+                    <div class="regional-card">
+                        <h4><i class="fa-solid fa-location-dot"></i> West Coast</h4>
+                        <p><strong>California:</strong> <a href="tel:1-800-CA-QUAKE">1-800-CA-QUAKE</a></p>
+                        <p><strong>Oregon:</strong> <a href="tel:1-800-OR-READY">1-800-OR-READY</a></p>
+                        <p><strong>Washington:</strong> <a href="tel:1-800-WA-EMERG">1-800-WA-EMERG</a></p>
+                    </div>
+
+                    <div class="regional-card">
+                        <h4><i class="fa-solid fa-location-dot"></i> Pacific</h4>
+                        <p><strong>Hawaii:</strong> <a href="tel:1-800-HI-ALERT">1-800-HI-ALERT</a></p>
+                        <p><strong>Alaska:</strong> <a href="tel:1-800-AK-READY">1-800-AK-READY</a></p>
+                        <p><strong>Pacific Islands:</strong> <a href="tel:1-800-PI-EMERG">1-800-PI-EMERG</a></p>
+                    </div>
+
+                    <div class="regional-card">
+                        <h4><i class="fa-solid fa-location-dot"></i> Central US</h4>
+                        <p><strong>Midwest:</strong> <a href="tel:1-800-MW-READY">1-800-MW-READY</a></p>
+                        <p><strong>Plains:</strong> <a href="tel:1-800-PL-ALERT">1-800-PL-ALERT</a></p>
+                        <p><strong>South:</strong> <a href="tel:1-800-SO-EMERG">1-800-SO-EMERG</a></p>
+                    </div>
+
+                    <div class="regional-card">
+                        <h4><i class="fa-solid fa-location-dot"></i> East Coast</h4>
+                        <p><strong>Northeast:</strong> <a href="tel:1-800-NE-READY">1-800-NE-READY</a></p>
+                        <p><strong>Mid-Atlantic:</strong> <a href="tel:1-800-MA-ALERT">1-800-MA-ALERT</a></p>
+                        <p><strong>Southeast:</strong> <a href="tel:1-800-SE-EMERG">1-800-SE-EMERG</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

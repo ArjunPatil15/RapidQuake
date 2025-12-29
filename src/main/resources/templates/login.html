@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::Layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - RapidQuake</title>
+</head>
+
+<body>
+    <section class="container-fluid p-0">
+        <!-- Login Section -->
+        <div class="admin-login-section d-flex align-items-center justify-content-center min-vh-100" style="padding-top: 100px;">
+            <div class="admin-login-overlay"></div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-5">
+                        <div class="card admin-login-card border-0 shadow-lg">
+                            <div class="card-body p-5">
+                                <div class="text-center mb-4">
+                                    <div class="admin-login-icon mb-3">
+                                        <i class="fas fa-globe-americas fa-3x" style="color: #ffc107;"></i>
+                                    </div>
+                                    <h2 class="fw-bold text-dark mb-2">Welcome Back</h2>
+                                    <p class="text-muted">Sign in to access RapidQuake alerts and safety features</p>
+                                </div>
+
+                                <!-- Login Form -->
+                                <form th:action="@{/login}" method="post" class="login-form">
+                                    <!-- Alert Messages -->
+                                    <!-- <div th:if="${param.error}" class="alert alert-danger mb-3" role="alert">
+                                        <i class="fas fa-exclamation-triangle me-2"></i>
+                                        Invalid email or password. Please try again.
+                                    </div>
+                                    
+                                    <div th:if="${param.logout}" class="alert alert-success mb-3" role="alert">
+                                        <i class="fas fa-check-circle me-2"></i>
+                                        You have been logged out successfully.
+                                    </div>
+
+                                    <div th:if="${message}" class="alert alert-info mb-3" role="alert">
+                                        <i class="fas fa-info-circle me-2"></i>
+                                        <span th:text="${message}">Info message</span>
+                                    </div> -->
+
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label text-dark">
+                                            <i class="fas fa-envelope me-2"></i>Email Address
+                                        </label>
+                                        <input type="email" class="form-control form-control-admin" id="email" 
+                                               name="email" placeholder="Enter your email" required 
+                                               th:value="${email}" autocomplete="email">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label text-dark">
+                                            <i class="fas fa-lock me-2"></i>Password
+                                        </label>
+                                        <input type="password" class="form-control form-control-admin" id="password" 
+                                               name="password" placeholder="Enter your password" required 
+                                               autocomplete="current-password">
+                                    </div>
+
+                                    <div class="mb-3 d-flex justify-content-between align-items-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="rememberMe" 
+                                                   name="remember-me" th:checked="${rememberMe}">
+                                            <label class="form-check-label text-dark" for="rememberMe">
+                                                Remember me
+                                            </label>
+                                        </div>
+                                        <a href="/forgot-password" th:href="@{/forgot-password}" 
+                                           class="text-warning text-decoration-none">
+                                            Forgot Password?
+                                        </a>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-dark btn-lg w-100 mb-3 fw-bold" style="background: linear-gradient(135deg, #ffc107, #ff8c00) !important; border: none;">
+                                        <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                                    </button>
+
+                                    <div class="text-center">
+                                        <span class="text-muted">Don't have an account? </span>
+                                        <a href="/register" th:href="@{/register}" 
+                                           class="text-warning text-decoration-none fw-bold">Sign Up</a>
+                                    </div>
+                                </form>
+
+                                <!-- Emergency Access -->
+                                <div class="emergency-access mt-4 pt-3 border-top border-secondary">
+                                    <div class="text-center">
+                                        <small class="text-muted mb-2 d-block">Emergency Access</small>
+                                        <a href="/emergency-alerts" th:href="@{/emergency-alerts}" 
+                                           class="btn btn-outline-warning btn-sm">
+                                            <i class="fas fa-exclamation-triangle me-1"></i>
+                                            View Public Alerts
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Admin Login Link -->
+                        <div class="text-center mt-3">
+                            <a href="/admin/login" th:href="@{/admin/login}" 
+                               class="text-muted text-decoration-none">
+                                <i class="fas fa-user-shield me-2"></i>Admin Login
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
