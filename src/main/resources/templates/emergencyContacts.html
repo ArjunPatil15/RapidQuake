@@ -9,435 +9,431 @@
 
 <body>
     <section>
-        <style>
-            .emergency-hero {
-                background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-                padding: 80px 20px 60px;
-                text-align: center;
-                color: white;
-                margin-top: 60px;
-            }
-
-            .emergency-hero h1 {
-                font-size: 2.5rem;
-                margin-bottom: 15px;
-                font-weight: 700;
-            }
-
-            .emergency-hero p {
-                font-size: 1.1rem;
-                opacity: 0.95;
-                max-width: 700px;
-                margin: 0 auto;
-            }
-
-            .emergency-container {
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 60px 20px;
-            }
-
-            .emergency-alert {
-                background: #fee2e2;
-                border-left: 5px solid #dc2626;
-                padding: 20px 25px;
-                border-radius: 8px;
-                margin-bottom: 40px;
-                display: flex;
-                align-items: center;
-                gap: 15px;
-            }
-
-            .emergency-alert i {
-                font-size: 2rem;
-                color: #dc2626;
-            }
-
-            .emergency-alert-content h3 {
-                color: #991b1b;
-                margin: 0 0 8px 0;
-                font-size: 1.3rem;
-            }
-
-            .emergency-alert-content p {
-                margin: 0;
-                color: #7f1d1d;
-                font-size: 1rem;
-            }
-
-            .emergency-number {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 15px;
-                background: #dc2626;
-                color: white;
-                padding: 20px;
-                border-radius: 12px;
-                font-size: 2rem;
-                font-weight: 700;
-                margin-bottom: 50px;
-                cursor: pointer;
-                transition: all 0.3s;
-            }
-
-            .emergency-number:hover {
-                background: #b91c1c;
-                transform: scale(1.02);
-            }
-
-            .contacts-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-                gap: 30px;
-                margin-bottom: 50px;
-            }
-
-            .contact-card {
-                background: white;
-                border-radius: 12px;
-                padding: 30px;
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-                transition: all 0.3s;
-            }
-
-            .contact-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            }
-
-            .contact-card-header {
-                display: flex;
-                align-items: center;
-                gap: 15px;
-                margin-bottom: 20px;
-                padding-bottom: 15px;
-                border-bottom: 2px solid #f3f4f6;
-            }
-
-            .contact-icon {
-                width: 60px;
-                height: 60px;
-                border-radius: 12px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 1.8rem;
-                color: white;
-            }
-
-            .contact-card-header h3 {
-                margin: 0;
-                font-size: 1.4rem;
-                color: #1f2937;
-            }
-
-            .contact-info {
-                margin-bottom: 15px;
-            }
-
-            .contact-info-item {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                padding: 12px 0;
-                border-bottom: 1px solid #f3f4f6;
-            }
-
-            .contact-info-item:last-child {
-                border-bottom: none;
-            }
-
-            .contact-info-item i {
-                color: #667eea;
-                font-size: 1.1rem;
-                width: 20px;
-            }
-
-            .contact-info-item span {
-                color: #4b5563;
-                font-size: 1rem;
-            }
-
-            .contact-info-item a {
-                color: #667eea;
-                text-decoration: none;
-                font-weight: 600;
-                transition: color 0.3s;
-            }
-
-            .contact-info-item a:hover {
-                color: #4c51bf;
-            }
-
-            .regional-section {
-                margin-top: 60px;
-                background: #f9fafb;
-                padding: 50px 30px;
-                border-radius: 16px;
-            }
-
-            .regional-section h2 {
-                text-align: center;
-                font-size: 2rem;
-                margin-bottom: 40px;
-                color: #1f2937;
-            }
-
-            .regional-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: 25px;
-            }
-
-            .regional-card {
-                background: white;
-                padding: 25px;
-                border-radius: 10px;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            }
-
-            .regional-card h4 {
-                color: #667eea;
-                margin: 0 0 15px 0;
-                font-size: 1.2rem;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-
-            .regional-card p {
-                margin: 8px 0;
-                color: #4b5563;
-                display: flex;
-                justify-content: space-between;
-                padding: 8px;
-                background: #f9fafb;
-                border-radius: 6px;
-            }
-
-            .regional-card strong {
-                color: #1f2937;
-            }
-
-            @media (max-width: 768px) {
-                .emergency-hero h1 {
-                    font-size: 2rem;
-                }
-
-                .emergency-number {
-                    font-size: 1.5rem;
-                    padding: 15px;
-                }
-
-                .contacts-grid {
-                    grid-template-columns: 1fr;
-                }
-
-                .regional-grid {
-                    grid-template-columns: 1fr;
-                }
-
-                .emergency-alert {
-                    flex-direction: column;
-                    text-align: center;
-                }
-            }
-        </style>
-
+        <link rel="stylesheet" th:href="@{/css/emergencyContacts.css}">
+        
+        <!-- Hero Section -->
         <div class="emergency-hero">
-            <h1><i class="fa-solid fa-phone-volume"></i> Emergency Contacts</h1>
-            <p>Quick access to essential emergency numbers and contacts during earthquakes</p>
+            <div class="hero-content">
+                <div class="hero-icon">
+                    <i class="fa-solid fa-phone-volume"></i>
+                </div>
+                <h1>Emergency Contact Directory</h1>
+                <p class="hero-subtitle">Immediate access to critical emergency services and disaster response teams</p>
+            </div>
+        </div>
+
+        <!-- Critical Alert Banner -->
+        <div class="alert-banner">
+            <div class="alert-content">
+                <div class="alert-icon">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div class="alert-text">
+                    <h3>Life-Threatening Emergency?</h3>
+                    <p>For immediate danger requiring police, fire, or medical assistance</p>
+                </div>
+                <a href="tel:911" class="emergency-dial-btn">
+                    <i class="fa-solid fa-phone"></i>
+                    DIAL 911 NOW
+                </a>
+            </div>
         </div>
 
         <div class="emergency-container">
-            <div class="emergency-alert">
-                <i class="fa-solid fa-triangle-exclamation"></i>
-                <div class="emergency-alert-content">
-                    <h3>In Case of Immediate Danger</h3>
-                    <p>If you are in immediate danger or need urgent assistance, call emergency services immediately. Keep your phone charged and accessible at all times.</p>
-                </div>
+            <!-- Primary Emergency Services -->
+            <div class="section-header">
+                <h2>Primary Emergency Services</h2>
+                <p>Available 24/7 for immediate response</p>
             </div>
 
-            <div class="emergency-number" onclick="window.location.href='tel:911'">
-                <i class="fa-solid fa-phone"></i>
-                <span>DIAL 911</span>
-                <i class="fa-solid fa-phone"></i>
-            </div>
-
-            <div class="contacts-grid">
-                <div class="contact-card">
-                    <div class="contact-card-header">
-                        <div class="contact-icon" style="background: #dc2626;">
+            <div class="services-grid">
+                <!-- Emergency Medical Services -->
+                <div class="service-card priority-high">
+                    <div class="card-ribbon">CRITICAL</div>
+                    <div class="service-header">
+                        <div class="service-icon emergency">
                             <i class="fa-solid fa-truck-medical"></i>
                         </div>
-                        <h3>Emergency Medical</h3>
+                        <div class="service-title">
+                            <h3>Emergency Medical Services</h3>
+                            <span class="availability">24/7 Response</span>
+                        </div>
                     </div>
-                    <div class="contact-info">
-                        <div class="contact-info-item">
-                            <i class="fa-solid fa-phone"></i>
-                            <a href="tel:911">911</a>
+                    <div class="service-body">
+                        <div class="contact-row primary">
+                            <span class="contact-label">Emergency Hotline</span>
+                            <a href="tel:911" class="contact-value">911</a>
                         </div>
-                        <div class="contact-info-item">
-                            <i class="fa-solid fa-phone-volume"></i>
-                            <span>Emergency Hotline: <a href="tel:1-800-MEDICAL">1-800-MEDICAL</a></span>
+                        <div class="contact-row">
+                            <span class="contact-label">Non-Emergency Line</span>
+                            <a href="tel:18006332373" class="contact-value">1-800-MEDICAL-3</a>
                         </div>
-                        <div class="contact-info-item">
-                            <i class="fa-solid fa-clock"></i>
-                            <span>24/7 Available</span>
+                        <div class="contact-row">
+                            <span class="contact-label">Poison Control</span>
+                            <a href="tel:18002221222" class="contact-value">1-800-222-1222</a>
+                        </div>
+                        <div class="service-info">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <span>Provides emergency medical treatment and transport</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="contact-card">
-                    <div class="contact-card-header">
-                        <div class="contact-icon" style="background: #ea580c;">
+                <!-- Fire Department -->
+                <div class="service-card priority-high">
+                    <div class="card-ribbon fire">CRITICAL</div>
+                    <div class="service-header">
+                        <div class="service-icon fire">
                             <i class="fa-solid fa-fire-flame-curved"></i>
                         </div>
-                        <h3>Fire Department</h3>
+                        <div class="service-title">
+                            <h3>Fire & Rescue Services</h3>
+                            <span class="availability">24/7 Response</span>
+                        </div>
                     </div>
-                    <div class="contact-info">
-                        <div class="contact-info-item">
-                            <i class="fa-solid fa-phone"></i>
-                            <a href="tel:911">911</a>
+                    <div class="service-body">
+                        <div class="contact-row primary">
+                            <span class="contact-label">Fire Emergency</span>
+                            <a href="tel:911" class="contact-value">911</a>
                         </div>
-                        <div class="contact-info-item">
-                            <i class="fa-solid fa-phone-volume"></i>
-                            <span>Non-Emergency: <a href="tel:1-800-FIRE-911">1-800-FIRE-911</a></span>
+                        <div class="contact-row">
+                            <span class="contact-label">Non-Emergency</span>
+                            <a href="tel:311" class="contact-value">311</a>
                         </div>
-                        <div class="contact-info-item">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <span>Local Station Locator Available</span>
+                        <div class="contact-row">
+                            <span class="contact-label">Fire Prevention</span>
+                            <a href="tel:18004738733" class="contact-value">1-800-4-SAFETY</a>
+                        </div>
+                        <div class="service-info">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <span>Fire suppression, rescue operations, and hazmat response</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="contact-card">
-                    <div class="contact-card-header">
-                        <div class="contact-icon" style="background: #2563eb;">
+                <!-- Police Department -->
+                <div class="service-card priority-high">
+                    <div class="card-ribbon police">CRITICAL</div>
+                    <div class="service-header">
+                        <div class="service-icon police">
                             <i class="fa-solid fa-shield-halved"></i>
                         </div>
-                        <h3>Police Department</h3>
-                    </div>
-                    <div class="contact-info">
-                        <div class="contact-info-item">
-                            <i class="fa-solid fa-phone"></i>
-                            <a href="tel:911">911</a>
-                        </div>
-                        <div class="contact-info-item">
-                            <i class="fa-solid fa-phone-volume"></i>
-                            <span>Non-Emergency: <a href="tel:311">311</a></span>
-                        </div>
-                        <div class="contact-info-item">
-                            <i class="fa-solid fa-comments"></i>
-                            <span>Text POLICE to 67283</span>
+                        <div class="service-title">
+                            <h3>Law Enforcement</h3>
+                            <span class="availability">24/7 Response</span>
                         </div>
                     </div>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-card-header">
-                        <div class="contact-icon" style="background: #059669;">
-                            <i class="fa-solid fa-hands-holding-child"></i>
+                    <div class="service-body">
+                        <div class="contact-row primary">
+                            <span class="contact-label">Police Emergency</span>
+                            <a href="tel:911" class="contact-value">911</a>
                         </div>
-                        <h3>Disaster Relief</h3>
-                    </div>
-                    <div class="contact-info">
-                        <div class="contact-info-item">
-                            <i class="fa-solid fa-phone"></i>
-                            <a href="tel:1-800-RED-CROSS">1-800-RED-CROSS</a>
+                        <div class="contact-row">
+                            <span class="contact-label">Non-Emergency</span>
+                            <a href="tel:311" class="contact-value">311</a>
                         </div>
-                        <div class="contact-info-item">
-                            <i class="fa-solid fa-envelope"></i>
-                            <span><a href="mailto:disaster@redcross.org">disaster@redcross.org</a></span>
+                        <div class="contact-row">
+                            <span class="contact-label">Anonymous Tip Line</span>
+                            <a href="tel:18002223463" class="contact-value">1-800-222-TIPS</a>
                         </div>
-                        <div class="contact-info-item">
-                            <i class="fa-solid fa-clock"></i>
-                            <span>24/7 Hotline Available</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-card-header">
-                        <div class="contact-icon" style="background: #7c3aed;">
-                            <i class="fa-solid fa-house-crack"></i>
-                        </div>
-                        <h3>FEMA</h3>
-                    </div>
-                    <div class="contact-info">
-                        <div class="contact-info-item">
-                            <i class="fa-solid fa-phone"></i>
-                            <a href="tel:1-800-621-3362">1-800-621-FEMA</a>
-                        </div>
-                        <div class="contact-info-item">
-                            <i class="fa-solid fa-tty"></i>
-                            <span>TTY: <a href="tel:1-800-462-7585">1-800-462-7585</a></span>
-                        </div>
-                        <div class="contact-info-item">
-                            <i class="fa-solid fa-globe"></i>
-                            <span><a href="https://www.fema.gov" target="_blank">www.fema.gov</a></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact-card">
-                    <div class="contact-card-header">
-                        <div class="contact-icon" style="background: #0891b2;">
-                            <i class="fa-solid fa-water"></i>
-                        </div>
-                        <h3>Utilities Emergency</h3>
-                    </div>
-                    <div class="contact-info">
-                        <div class="contact-info-item">
-                            <i class="fa-solid fa-bolt"></i>
-                            <span>Electric: <a href="tel:1-800-POWER-01">1-800-POWER-01</a></span>
-                        </div>
-                        <div class="contact-info-item">
-                            <i class="fa-solid fa-fire-burner"></i>
-                            <span>Gas: <a href="tel:1-800-GAS-LEAK">1-800-GAS-LEAK</a></span>
-                        </div>
-                        <div class="contact-info-item">
-                            <i class="fa-solid fa-droplet"></i>
-                            <span>Water: <a href="tel:1-800-WATER-01">1-800-WATER-01</a></span>
+                        <div class="service-info">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <span>Public safety, security, and law enforcement services</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="regional-section">
-                <h2><i class="fa-solid fa-map-location-dot"></i> Regional Emergency Centers</h2>
-                <div class="regional-grid">
-                    <div class="regional-card">
-                        <h4><i class="fa-solid fa-location-dot"></i> West Coast</h4>
-                        <p><strong>California:</strong> <a href="tel:1-800-CA-QUAKE">1-800-CA-QUAKE</a></p>
-                        <p><strong>Oregon:</strong> <a href="tel:1-800-OR-READY">1-800-OR-READY</a></p>
-                        <p><strong>Washington:</strong> <a href="tel:1-800-WA-EMERG">1-800-WA-EMERG</a></p>
-                    </div>
+            <!-- Disaster Response Organizations -->
+            <div class="section-header" style="margin-top: 80px;">
+                <h2>Disaster Response & Relief</h2>
+                <p>Specialized earthquake and disaster assistance</p>
+            </div>
 
-                    <div class="regional-card">
-                        <h4><i class="fa-solid fa-location-dot"></i> Pacific</h4>
-                        <p><strong>Hawaii:</strong> <a href="tel:1-800-HI-ALERT">1-800-HI-ALERT</a></p>
-                        <p><strong>Alaska:</strong> <a href="tel:1-800-AK-READY">1-800-AK-READY</a></p>
-                        <p><strong>Pacific Islands:</strong> <a href="tel:1-800-PI-EMERG">1-800-PI-EMERG</a></p>
+            <div class="services-grid">
+                <!-- FEMA -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon fema">
+                            <i class="fa-solid fa-building-shield"></i>
+                        </div>
+                        <div class="service-title">
+                            <h3>FEMA - Federal Emergency Management</h3>
+                            <span class="availability">24/7 Helpline</span>
+                        </div>
                     </div>
+                    <div class="service-body">
+                        <div class="contact-row">
+                            <span class="contact-label">Main Hotline</span>
+                            <a href="tel:18006213362" class="contact-value">1-800-621-3362</a>
+                        </div>
+                        <div class="contact-row">
+                            <span class="contact-label">TTY Service</span>
+                            <a href="tel:18004627585" class="contact-value">1-800-462-7585</a>
+                        </div>
+                        <div class="contact-row">
+                            <span class="contact-label">Website</span>
+                            <a href="https://www.fema.gov" target="_blank" class="contact-value">www.fema.gov</a>
+                        </div>
+                        <div class="service-info">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <span>Federal disaster assistance and recovery programs</span>
+                        </div>
+                    </div>
+                </div>
 
-                    <div class="regional-card">
-                        <h4><i class="fa-solid fa-location-dot"></i> Central US</h4>
-                        <p><strong>Midwest:</strong> <a href="tel:1-800-MW-READY">1-800-MW-READY</a></p>
-                        <p><strong>Plains:</strong> <a href="tel:1-800-PL-ALERT">1-800-PL-ALERT</a></p>
-                        <p><strong>South:</strong> <a href="tel:1-800-SO-EMERG">1-800-SO-EMERG</a></p>
+                <!-- Red Cross -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon redcross">
+                            <i class="fa-solid fa-hand-holding-medical"></i>
+                        </div>
+                        <div class="service-title">
+                            <h3>American Red Cross</h3>
+                            <span class="availability">24/7 Disaster Relief</span>
+                        </div>
                     </div>
+                    <div class="service-body">
+                        <div class="contact-row">
+                            <span class="contact-label">Disaster Hotline</span>
+                            <a href="tel:18007332767" class="contact-value">1-800-RED-CROSS</a>
+                        </div>
+                        <div class="contact-row">
+                            <span class="contact-label">Email Support</span>
+                            <a href="mailto:disaster@redcross.org" class="contact-value">disaster@redcross.org</a>
+                        </div>
+                        <div class="contact-row">
+                            <span class="contact-label">Text SHELTER</span>
+                            <a href="sms:43362" class="contact-value">43362</a>
+                        </div>
+                        <div class="service-info">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <span>Emergency shelters, supplies, and disaster relief services</span>
+                        </div>
+                    </div>
+                </div>
 
-                    <div class="regional-card">
-                        <h4><i class="fa-solid fa-location-dot"></i> East Coast</h4>
-                        <p><strong>Northeast:</strong> <a href="tel:1-800-NE-READY">1-800-NE-READY</a></p>
-                        <p><strong>Mid-Atlantic:</strong> <a href="tel:1-800-MA-ALERT">1-800-MA-ALERT</a></p>
-                        <p><strong>Southeast:</strong> <a href="tel:1-800-SE-EMERG">1-800-SE-EMERG</a></p>
+                <!-- Salvation Army -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon salvation">
+                            <i class="fa-solid fa-hands-holding-child"></i>
+                        </div>
+                        <div class="service-title">
+                            <h3>Salvation Army Emergency Disaster Services</h3>
+                            <span class="availability">Immediate Response</span>
+                        </div>
                     </div>
+                    <div class="service-body">
+                        <div class="contact-row">
+                            <span class="contact-label">Emergency Line</span>
+                            <a href="tel:18007287825" class="contact-value">1-800-SAL-VATION</a>
+                        </div>
+                        <div class="contact-row">
+                            <span class="contact-label">Local Services</span>
+                            <a href="tel:211" class="contact-value">211</a>
+                        </div>
+                        <div class="contact-row">
+                            <span class="contact-label">Website</span>
+                            <a href="https://www.salvationarmyusa.org" target="_blank" class="contact-value">salvationarmyusa.org</a>
+                        </div>
+                        <div class="service-info">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <span>Food, shelter, and emotional/spiritual care</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Utilities & Infrastructure -->
+            <div class="section-header" style="margin-top: 80px;">
+                <h2>Utility Emergency Services</h2>
+                <p>Report outages and hazardous conditions immediately</p>
+            </div>
+
+            <div class="utilities-grid">
+                <div class="utility-card">
+                    <div class="utility-icon electric">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h4>Electric Power</h4>
+                    <div class="utility-contacts">
+                        <div class="utility-contact">
+                            <span>Emergency Outage</span>
+                            <a href="tel:18003693000">1-800-369-3000</a>
+                        </div>
+                        <div class="utility-contact">
+                            <span>Downed Power Lines</span>
+                            <a href="tel:911">Call 911</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="utility-card">
+                    <div class="utility-icon gas">
+                        <i class="fa-solid fa-fire-burner"></i>
+                    </div>
+                    <h4>Natural Gas</h4>
+                    <div class="utility-contacts">
+                        <div class="utility-contact">
+                            <span>Gas Leak Emergency</span>
+                            <a href="tel:18004272200">1-800-427-2200</a>
+                        </div>
+                        <div class="utility-contact">
+                            <span>Always Call From Safe Location</span>
+                            <strong>EVACUATE FIRST</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="utility-card">
+                    <div class="utility-icon water">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <h4>Water Service</h4>
+                    <div class="utility-contacts">
+                        <div class="utility-contact">
+                            <span>Water Main Break</span>
+                            <a href="tel:18008334362">1-800-833-4362</a>
+                        </div>
+                        <div class="utility-contact">
+                            <span>Water Quality Issues</span>
+                            <a href="tel:311">311</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="utility-card">
+                    <div class="utility-icon telecom">
+                        <i class="fa-solid fa-tower-cell"></i>
+                    </div>
+                    <h4>Telecommunications</h4>
+                    <div class="utility-contacts">
+                        <div class="utility-contact">
+                            <span>Service Disruption</span>
+                            <a href="tel:611">Dial 611</a>
+                        </div>
+                        <div class="utility-contact">
+                            <span>Report Downed Lines</span>
+                            <a href="tel:18007801111">1-800-780-1111</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Regional Centers -->
+            <div class="section-header" style="margin-top: 80px;">
+                <h2>Regional Emergency Management</h2>
+                <p>State and regional earthquake response centers</p>
+            </div>
+
+            <div class="regional-container">
+                <div class="regional-card">
+                    <div class="region-header">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <h3>West Coast</h3>
+                    </div>
+                    <div class="region-contacts">
+                        <div class="region-item">
+                            <span class="state">California OES</span>
+                            <a href="tel:18002791710">1-800-279-1710</a>
+                        </div>
+                        <div class="region-item">
+                            <span class="state">Oregon OEM</span>
+                            <a href="tel:18005360800">1-800-536-0800</a>
+                        </div>
+                        <div class="region-item">
+                            <span class="state">Washington EMD</span>
+                            <a href="tel:18002586397">1-800-258-5990</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="regional-card">
+                    <div class="region-header">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <h3>Pacific Region</h3>
+                    </div>
+                    <div class="region-contacts">
+                        <div class="region-item">
+                            <span class="state">Hawaii EMA</span>
+                            <a href="tel:18086443014">1-808-644-3014</a>
+                        </div>
+                        <div class="region-item">
+                            <span class="state">Alaska DHS&EM</span>
+                            <a href="tel:19074286300">1-907-428-7000</a>
+                        </div>
+                        <div class="region-item">
+                            <span class="state">Guam HSC</span>
+                            <a href="tel:16714757221">1-671-475-9600</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="regional-card">
+                    <div class="region-header">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <h3>Mountain & Southwest</h3>
+                    </div>
+                    <div class="region-contacts">
+                        <div class="region-item">
+                            <span class="state">Nevada DEM</span>
+                            <a href="tel:17756843100">1-775-684-3100</a>
+                        </div>
+                        <div class="region-item">
+                            <span class="state">Utah DEM</span>
+                            <a href="tel:18015385400">1-801-538-3400</a>
+                        </div>
+                        <div class="region-item">
+                            <span class="state">Arizona DEMA</span>
+                            <a href="tel:16024314444">1-602-244-0504</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="regional-card">
+                    <div class="region-header">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <h3>Central United States</h3>
+                    </div>
+                    <div class="region-contacts">
+                        <div class="region-item">
+                            <span class="state">Missouri SEMA</span>
+                            <a href="tel:15737515432">1-573-751-5432</a>
+                        </div>
+                        <div class="region-item">
+                            <span class="state">Tennessee EMA</span>
+                            <a href="tel:16157417331">1-615-741-7331</a>
+                        </div>
+                        <div class="region-item">
+                            <span class="state">Arkansas DEM</span>
+                            <a href="tel:15016835950">1-501-683-5950</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Important Information -->
+            <div class="info-cards">
+                <div class="info-card">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                    <h4>Save These Numbers</h4>
+                    <p>Add all emergency contacts to your phone now. In a crisis, you may not have internet access.</p>
+                </div>
+                <div class="info-card">
+                    <i class="fa-solid fa-print"></i>
+                    <h4>Print This List</h4>
+                    <p>Keep a printed copy with your emergency kit. Power outages may prevent phone usage.</p>
+                </div>
+                <div class="info-card">
+                    <i class="fa-solid fa-users"></i>
+                    <h4>Share With Family</h4>
+                    <p>Ensure all household members know these contacts and have them readily accessible.</p>
                 </div>
             </div>
         </div>
+
+        <script th:src="@{/js/emergencyContacts.js}"></script>
     </section>
 </body>
 

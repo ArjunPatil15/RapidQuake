@@ -1,0 +1,661 @@
+/* firstAid.css */
+
+:root {
+    --critical-red: #dc2626;
+    --serious-orange: #ea580c;
+    --warning-yellow: #f59e0b;
+}
+
+section {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Hero */
+.firstaid-hero {
+    position: relative;
+    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+    padding: 120px 20px 80px;
+    margin-top: 60px;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+}
+
+.hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.2);
+    padding: 12px 24px;
+    border-radius: 50px;
+    color: white;
+    font-weight: 700;
+    margin-bottom: 25px;
+    backdrop-filter: blur(10px);
+}
+
+.firstaid-hero h1 {
+    color: white;
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 25px;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.hero-subtitle {
+    color: rgba(255,255,255,0.95);
+    font-size: 1.3rem;
+    margin: 0 0 35px 0;
+    line-height: 1.6;
+}
+
+.hero-warning {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,0.95);
+    color: #991b1b;
+    padding: 18px 35px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1.1rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+
+/* Container */
+.firstaid-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 20px;
+}
+
+/* Disclaimer */
+.disclaimer-banner {
+    background: #fef2f2;
+    border-left: 6px solid var(--critical-red);
+    padding: 35px;
+    border-radius: 16px;
+    display: flex;
+    gap: 25px;
+    margin-bottom: 60px;
+    box-shadow: 0 4px 20px rgba(220,38,38,0.1);
+}
+
+.disclaimer-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #dc2626, #991b1b);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2.5rem;
+    flex-shrink: 0;
+}
+
+.disclaimer-content h3 {
+    color: #991b1b;
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin: 0 0 15px 0;
+}
+
+.disclaimer-content p {
+    color: #7f1d1d;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* Priority System */
+.priority-system {
+    margin-bottom: 80px;
+}
+
+.priority-system h2 {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.section-subtitle {
+    color: #6b7280;
+    font-size: 1.15rem;
+    margin: 0 0 50px 0;
+}
+
+.abc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.abc-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 6px 30px rgba(0,0,0,0.1);
+    border-top: 6px solid;
+}
+
+.abc-card.airway { border-color: #3b82f6; }
+.abc-card.breathing { border-color: #10b981; }
+.abc-card.circulation { border-color: #dc2626; }
+
+.abc-letter {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 25px;
+}
+
+.airway .abc-letter { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+.breathing .abc-letter { background: linear-gradient(135deg, #10b981, #059669); }
+.circulation .abc-letter { background: linear-gradient(135deg, #dc2626, #991b1b); }
+
+.abc-card h3 {
+    color: #111827;
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 0 0 20px 0;
+}
+
+.abc-content h4 {
+    color: #4b5563;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+}
+
+.abc-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.abc-content li {
+    padding: 10px 0;
+    padding-left: 30px;
+    position: relative;
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+.abc-content li::before {
+    content: "●";
+    position: absolute;
+    left: 0;
+    color: #059669;
+    font-size: 1.2rem;
+}
+
+.abc-warning, .abc-action {
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.abc-warning {
+    background: #fef2f2;
+    border-left: 4px solid #dc2626;
+}
+
+.abc-warning i {
+    color: #dc2626;
+    font-size: 1.2rem;
+}
+
+.abc-warning span {
+    color: #991b1b;
+    font-weight: 600;
+}
+
+.abc-action {
+    background: #f0fdf4;
+    border-left: 4px solid #059669;
+    color: #065f46;
+    font-weight: 600;
+}
+
+/* Injuries Section */
+.injuries-section {
+    margin-bottom: 80px;
+}
+
+.injuries-section h2 {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.injury-cards {
+    display: grid;
+    gap: 40px;
+}
+
+.injury-card {
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 6px 30px rgba(0,0,0,0.1);
+    border: 3px solid #e5e7eb;
+}
+
+.injury-card.critical {
+    border-color: var(--critical-red);
+}
+
+.injury-card.serious {
+    border-color: var(--serious-orange);
+}
+
+.injury-header {
+    background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.injury-priority {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--critical-red);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.serious-tag {
+    background: var(--serious-orange);
+}
+
+.injury-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2.5rem;
+    flex-shrink: 0;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+.injury-title h3 {
+    color: #111827;
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin: 0 0 8px 0;
+}
+
+.injury-time {
+    color: #6b7280;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.injury-body {
+    padding: 40px;
+}
+
+.injury-recognition, .burn-classification {
+    margin-bottom: 35px;
+}
+
+.injury-recognition h4, .burn-classification h4, .treatment-steps h4, .injury-donts h4 {
+    color: #111827;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.injury-recognition ul, .injury-donts ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.injury-recognition li, .injury-donts li {
+    padding: 12px 15px;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding-left: 45px;
+    position: relative;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+.injury-recognition li::before {
+    content: "✓";
+    position: absolute;
+    left: 15px;
+    color: #059669;
+    font-weight: 900;
+    font-size: 1.2rem;
+}
+
+.injury-donts li::before {
+    content: "✗";
+    color: #dc2626;
+}
+
+/* Burn Types */
+.burn-types {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.burn-type {
+    padding: 15px 20px;
+    background: #f9fafb;
+    border-radius: 10px;
+    border-left: 4px solid #6b7280;
+    color: #4b5563;
+}
+
+.burn-type.critical-burn {
+    background: #fef2f2;
+    border-color: #dc2626;
+    color: #7f1d1d;
+    font-weight: 600;
+}
+
+/* Treatment Steps */
+.treatment-steps {
+    margin-bottom: 35px;
+}
+
+.step-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding-left: 60px;
+    position: relative;
+}
+
+.step-timeline::before {
+    content: '';
+    position: absolute;
+    left: 24px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, #059669, #047857);
+}
+
+.treatment-step {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.step-marker {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border: 4px solid #059669;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1.3rem;
+    color: #059669;
+    flex-shrink: 0;
+    margin-left: -61px;
+    box-shadow: 0 4px 15px rgba(5,150,105,0.3);
+    position: relative;
+    z-index: 1;
+}
+
+.step-content {
+    flex: 1;
+    background: #f9fafb;
+    padding: 20px 25px;
+    border-radius: 12px;
+}
+
+.step-content h5 {
+    color: #111827;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+}
+
+.step-content p {
+    color: #6b7280;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Crush Warning */
+.crush-warning {
+    background: #fef2f2;
+    border-left: 5px solid #dc2626;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 25px 0;
+    display: flex;
+    gap: 15px;
+}
+
+.crush-warning i {
+    color: #dc2626;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.crush-warning strong {
+    color: #991b1b;
+}
+
+.crush-warning div {
+    color: #7f1d1d;
+    line-height: 1.7;
+}
+
+/* CPR Section */
+.cpr-section {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    padding: 60px 40px;
+    border-radius: 24px;
+    box-shadow: 0 8px 35px rgba(5,150,105,0.15);
+}
+
+.cpr-section h2 {
+    color: #065f46;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 40px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.cpr-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+}
+
+.cpr-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.cpr-header h3 {
+    color: #111827;
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0 0 12px 0;
+}
+
+.cpr-header p {
+    color: #6b7280;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.cpr-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+.cpr-step {
+    text-align: center;
+    padding: 25px;
+    background: #f0fdf4;
+    border-radius: 16px;
+    transition: all 0.3s;
+}
+
+.cpr-step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(5,150,105,0.2);
+}
+
+.cpr-number {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #059669, #047857);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: 900;
+    margin: 0 auto 20px;
+    box-shadow: 0 4px 15px rgba(5,150,105,0.3);
+}
+
+.cpr-step h4 {
+    color: #065f46;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+}
+
+.cpr-step p {
+    color: #047857;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .firstaid-hero {
+        padding: 100px 20px 60px;
+    }
+
+    .firstaid-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .disclaimer-banner {
+        flex-direction: column;
+        padding: 25px;
+    }
+
+    .disclaimer-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+    }
+
+    .abc-grid,
+    .cpr-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .injury-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .injury-priority {
+        position: static;
+        margin-bottom: 10px;
+    }
+
+    .injury-body {
+        padding: 25px;
+    }
+
+    .step-timeline {
+        padding-left: 50px;
+    }
+
+    .step-timeline::before {
+        left: 20px;
+    }
+
+    .step-marker {
+        width: 40px;
+        height: 40px;
+        margin-left: -51px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .firstaid-container {
+        padding: 60px 15px;
+    }
+
+    .cpr-section {
+        padding: 40px 20px;
+    }
+}

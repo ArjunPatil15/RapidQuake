@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::Layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About RapidQuake - System Architecture & Technology</title>
+</head>
+
+<body>
+    <section>
+        <link rel="stylesheet" th:href="@{/css/about.css}">
+        
+        <!-- Hero Section -->
+        <div class="about-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <i class="fa-solid fa-globe-americas me-3"></i>
+                        About RapidQuake
+                    </h1>
+                    <p class="hero-subtitle">Pioneering Real-Time Earthquake Intelligence Through AI-Powered Location Analysis</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="container about-container">
+            
+            <!-- Overview Section -->
+            <div class="section-block overview-section">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <div class="section-icon-large">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h2 class="section-title">High-Level Concept</h2>
+                        <p class="section-text">
+                            RapidQuake operates as a <strong>Real-Time Event-Driven System</strong>. Unlike traditional passive systems that wait for external triggers like seismic sensors, RapidQuake proactively initiates analysis based on user movement.
+                        </p>
+                        <p class="section-text">
+                            It treats every location update as a query to its intelligence engine, asking: <em>"Is this specific coordinate currently at risk?"</em>
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="info-card gradient-card">
+                            <div class="card-icon">
+                                <i class="fa-solid fa-lightbulb"></i>
+                            </div>
+                            <h3>Our Innovation</h3>
+                            <p>We transform location tracking into predictive safety intelligence, providing millisecond-response warnings before traditional seismic detection methods can even initialize.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workflow Section -->
+            <div class="section-block workflow-section">
+                <div class="text-center mb-5">
+                    <h2 class="main-title">The Operational Workflow</h2>
+                    <p class="subtitle-text">A continuous four-stage pipeline: <strong>Ingestion → Inference → Decision → Dissemination</strong></p>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Stage 1 -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="workflow-card">
+                            <div class="workflow-number">01</div>
+                            <div class="workflow-icon">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <h3 class="workflow-title">Data Ingestion</h3>
+                            <p class="workflow-subtitle">The Input</p>
+                            <ul class="workflow-list">
+                                <li><strong>Source:</strong> Client devices (web/mobile)</li>
+                                <li><strong>Action:</strong> Capture high-precision GPS coordinates</li>
+                                <li><strong>Transmission:</strong> Secure encrypted channel to server</li>
+                                <li><strong>Capacity:</strong> Thousands of updates per second</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Stage 2 -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="workflow-card">
+                            <div class="workflow-number">02</div>
+                            <div class="workflow-icon">
+                                <i class="fa-solid fa-brain"></i>
+                            </div>
+                            <h3 class="workflow-title">AI Inference</h3>
+                            <p class="workflow-subtitle">The Brain</p>
+                            <ul class="workflow-list">
+                                <li><strong>Model:</strong> Random Forest Classifier</li>
+                                <li><strong>Process:</strong> Analyze coordinates against seismic patterns</li>
+                                <li><strong>Output:</strong> Risk Score (0.0 - 1.0)</li>
+                                <li><strong>Basis:</strong> Historical geological data</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Stage 3 -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="workflow-card">
+                            <div class="workflow-number">03</div>
+                            <div class="workflow-icon">
+                                <i class="fa-solid fa-gears"></i>
+                            </div>
+                            <h3 class="workflow-title">Decision Engine</h3>
+                            <p class="workflow-subtitle">The Logic</p>
+                            <ul class="workflow-list">
+                                <li><strong>Check:</strong> Compare score vs. threshold (0.75)</li>
+                                <li><strong>Safe:</strong> Log and terminate</li>
+                                <li><strong>Alert:</strong> Escalate to dissemination</li>
+                                <li><strong>Radius:</strong> Calculate impact zone dynamically</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Stage 4 -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="workflow-card">
+                            <div class="workflow-number">04</div>
+                            <div class="workflow-icon">
+                                <i class="fa-solid fa-bell"></i>
+                            </div>
+                            <h3 class="workflow-title">Alert Dissemination</h3>
+                            <p class="workflow-subtitle">The Output</p>
+                            <ul class="workflow-list">
+                                <li><strong>Method:</strong> WebSocket persistent connections</li>
+                                <li><strong>Action:</strong> Instant push notifications</li>
+                                <li><strong>Result:</strong> Visual & auditory alerts</li>
+                                <li><strong>Latency:</strong> < 2 seconds target</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Validation Loop -->
+            <div class="section-block validation-section">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <h2 class="section-title">
+                            <i class="fa-solid fa-shield-halved me-3"></i>
+                            The Validation Loop
+                        </h2>
+                        <p class="section-subtitle">Quality Assurance Through Ground Truth</p>
+                        <p class="section-text">
+                            To ensure our AI remains accurate and trustworthy, RapidQuake includes an autonomous self-auditing mechanism known as the "Ground Truth Loop."
+                        </p>
+                        
+                        <div class="validation-steps">
+                            <div class="validation-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>External Polling</h4>
+                                    <p>Background service connects to USGS at regular intervals</p>
+                                </div>
+                            </div>
+                            <div class="validation-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Event Ingestion</h4>
+                                    <p>Downloads verified earthquake data (Magnitude, Time, Epicenter)</p>
+                                </div>
+                            </div>
+                            <div class="validation-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Cross-Referencing</h4>
+                                    <p>Queries database: "Did we predict high risk near this epicenter?"</p>
+                                </div>
+                            </div>
+                            <div class="validation-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>Performance Logging</h4>
+                                    <p>Tracks True Positives, False Negatives, and False Positives</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="metrics-grid">
+                            <div class="metric-card success">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <h4>True Positive</h4>
+                                <p>AI predicted high risk + earthquake occurred</p>
+                                <span class="badge">Success</span>
+                            </div>
+                            <div class="metric-card warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                <h4>False Negative</h4>
+                                <p>AI predicted low risk + earthquake occurred</p>
+                                <span class="badge">Requires Retraining</span>
+                            </div>
+                            <div class="metric-card info">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <h4>False Positive</h4>
+                                <p>AI predicted high risk + no earthquake</p>
+                                <span class="badge">Over-Sensitivity</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Principles -->
+            <div class="section-block principles-section">
+                <div class="text-center mb-5">
+                    <h2 class="main-title">Key Technical Principles</h2>
+                    <p class="subtitle-text">The foundation of our advanced system architecture</p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="principle-card">
+                            <div class="principle-icon">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <h3>Asynchronous Processing</h3>
+                            <p>Non-blocking architecture ensures that data saving and risk prediction happen in parallel, maximizing response speed without delays.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="principle-card">
+                            <div class="principle-icon">
+                                <i class="fa-solid fa-microchip"></i>
+                            </div>
+                            <h3>Stateless Intelligence</h3>
+                            <p>The AI model evaluates every coordinate as a fresh, independent data point with zero bias, ensuring consistent accuracy across all predictions.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="principle-card">
+                            <div class="principle-icon">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <h3>Horizontal Scalability</h3>
+                            <p>Decoupled architecture separates user connections from AI processing, allowing seamless growth as our user base expands globally.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="section-block stats-section">
+                <div class="row g-4 text-center">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <h3 class="stat-number">&lt; 2s</h3>
+                            <p class="stat-label">Alert Latency</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <h3 class="stat-number">1000s</h3>
+                            <p class="stat-label">Concurrent Users</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-brain"></i>
+                            </div>
+                            <h3 class="stat-number">0.0-1.0</h3>
+                            <p class="stat-label">Risk Score Range</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-shield"></i>
+                            </div>
+                            <h3 class="stat-number">0.75</h3>
+                            <p class="stat-label">Safety Threshold</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="section-block cta-section">
+                <div class="cta-card">
+                    <div class="row align-items-center">
+                        <div class="col-lg-8 mb-3 mb-lg-0">
+                            <h2 class="cta-title">Experience the Future of Earthquake Safety</h2>
+                            <p class="cta-text">Join thousands of users who trust RapidQuake for real-time seismic intelligence and proactive safety alerts.</p>
+                        </div>
+                        <div class="col-lg-4 text-lg-end">
+                            <a href="/login" class="btn-cta">
+                                Get Started Now
+                                <i class="fa-solid fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</body>
+
+</html>

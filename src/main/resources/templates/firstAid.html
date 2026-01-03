@@ -9,592 +9,628 @@
 
 <body>
     <section>
-        <style>
-            .firstaid-hero {
-                background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-                padding: 80px 20px 60px;
-                text-align: center;
-                color: white;
-                margin-top: 60px;
-            }
-
-            .firstaid-hero h1 {
-                font-size: 2.5rem;
-                margin-bottom: 15px;
-                font-weight: 700;
-            }
-
-            .firstaid-hero p {
-                font-size: 1.1rem;
-                opacity: 0.95;
-                max-width: 700px;
-                margin: 0 auto;
-            }
-
-            .firstaid-container {
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 60px 20px;
-            }
-
-            .warning-box {
-                background: #fef2f2;
-                border-left: 6px solid #dc2626;
-                padding: 25px;
-                border-radius: 10px;
-                margin-bottom: 50px;
-            }
-
-            .warning-box h3 {
-                color: #991b1b;
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                margin: 0 0 15px 0;
-                font-size: 1.4rem;
-            }
-
-            .warning-box p {
-                color: #7f1d1d;
-                margin: 0;
-                line-height: 1.7;
-                font-size: 1.05rem;
-            }
-
-            .firstaid-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-                gap: 30px;
-                margin-bottom: 60px;
-            }
-
-            .firstaid-card {
-                background: white;
-                border-radius: 16px;
-                overflow: hidden;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-                transition: all 0.3s;
-            }
-
-            .firstaid-card:hover {
-                transform: translateY(-8px);
-                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-            }
-
-            .firstaid-card-header {
-                background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-                color: white;
-                padding: 25px;
-                display: flex;
-                align-items: center;
-                gap: 15px;
-            }
-
-            .firstaid-card-icon {
-                width: 60px;
-                height: 60px;
-                background: rgba(255, 255, 255, 0.2);
-                border-radius: 12px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 1.8rem;
-                flex-shrink: 0;
-            }
-
-            .firstaid-card-header h3 {
-                margin: 0;
-                font-size: 1.4rem;
-            }
-
-            .firstaid-card-body {
-                padding: 30px;
-            }
-
-            .firstaid-steps {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
-
-            .firstaid-step {
-                display: flex;
-                gap: 15px;
-                padding: 15px 0;
-                border-bottom: 1px solid #f3f4f6;
-            }
-
-            .firstaid-step:last-child {
-                border-bottom: none;
-            }
-
-            .step-number {
-                width: 32px;
-                height: 32px;
-                background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-                color: white;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-weight: 700;
-                flex-shrink: 0;
-                font-size: 0.9rem;
-            }
-
-            .step-content {
-                flex: 1;
-                color: #4b5563;
-                line-height: 1.7;
-            }
-
-            .step-content strong {
-                color: #1f2937;
-                display: block;
-                margin-bottom: 5px;
-            }
-
-            .priority-section {
-                background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-                padding: 50px 40px;
-                border-radius: 20px;
-                color: white;
-                margin-bottom: 60px;
-            }
-
-            .priority-section h2 {
-                text-align: center;
-                font-size: 2.2rem;
-                margin-bottom: 40px;
-            }
-
-            .priority-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 25px;
-            }
-
-            .priority-card {
-                background: rgba(255, 255, 255, 0.15);
-                padding: 25px;
-                border-radius: 12px;
-                backdrop-filter: blur(10px);
-                text-align: center;
-            }
-
-            .priority-icon {
-                width: 80px;
-                height: 80px;
-                background: rgba(255, 255, 255, 0.25);
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 2.5rem;
-                margin: 0 auto 20px;
-            }
-
-            .priority-card h3 {
-                margin: 0 0 15px 0;
-                font-size: 1.4rem;
-            }
-
-            .priority-card p {
-                margin: 0;
-                line-height: 1.7;
-                opacity: 0.95;
-            }
-
-            .dontdo-section {
-                background: #fef2f2;
-                padding: 50px 40px;
-                border-radius: 16px;
-                margin-bottom: 60px;
-            }
-
-            .dontdo-section h2 {
-                text-align: center;
-                color: #dc2626;
-                font-size: 2rem;
-                margin-bottom: 40px;
-            }
-
-            .dontdo-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 20px;
-            }
-
-            .dontdo-item {
-                display: flex;
-                gap: 15px;
-                padding: 20px;
-                background: white;
-                border-radius: 10px;
-                border-left: 4px solid #dc2626;
-            }
-
-            .dontdo-item i {
-                color: #dc2626;
-                font-size: 1.5rem;
-                flex-shrink: 0;
-            }
-
-            .dontdo-item p {
-                margin: 0;
-                color: #4b5563;
-                line-height: 1.6;
-            }
-
-            .dontdo-item strong {
-                color: #991b1b;
-                display: block;
-                margin-bottom: 5px;
-            }
-
-            @media (max-width: 768px) {
-                .firstaid-hero h1 {
-                    font-size: 2rem;
-                }
-
-                .firstaid-grid {
-                    grid-template-columns: 1fr;
-                }
-
-                .priority-section, .dontdo-section {
-                    padding: 30px 20px;
-                }
-
-                .priority-grid, .dontdo-grid {
-                    grid-template-columns: 1fr;
-                }
-            }
-        </style>
-
+        <link rel="stylesheet" th:href="@{/css/firstAid.css}">
+        
+        <!-- Hero Section -->
         <div class="firstaid-hero">
-            <h1><i class="fa-solid fa-kit-medical"></i> First Aid Tips for Earthquakes</h1>
-            <p>Essential medical guidance for treating common earthquake-related injuries</p>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fa-solid fa-certificate"></i>
+                    <span>American Red Cross Guidelines</span>
+                </div>
+                <h1>Earthquake First Aid Guide</h1>
+                <p class="hero-subtitle">Evidence-based emergency medical procedures for earthquake-related injuries</p>
+                <div class="hero-warning">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span>For Life-Threatening Emergencies: Call 911 Immediately</span>
+                </div>
+            </div>
         </div>
 
         <div class="firstaid-container">
-            <div class="warning-box">
-                <h3><i class="fa-solid fa-circle-exclamation"></i> Important Disclaimer</h3>
-                <p>This information is for educational purposes only and does not replace professional medical advice. In case of serious injuries, always call 911 or seek immediate medical attention. If someone is unconscious, not breathing, or has severe bleeding, call emergency services immediately.</p>
-            </div>
-
-            <div class="priority-section">
-                <h2><i class="fa-solid fa-heart-pulse"></i> Assess the Situation: ABC Priority</h2>
-                <div class="priority-grid">
-                    <div class="priority-card">
-                        <div class="priority-icon">
-                            <i class="fa-solid fa-lungs"></i>
-                        </div>
-                        <h3>A - Airway</h3>
-                        <p>Ensure the victim's airway is clear. Check for any obstructions in the mouth or throat. Tilt the head back gently to open the airway if the person is unconscious.</p>
-                    </div>
-
-                    <div class="priority-card">
-                        <div class="priority-icon">
-                            <i class="fa-solid fa-wind"></i>
-                        </div>
-                        <h3>B - Breathing</h3>
-                        <p>Check if the person is breathing. Look for chest movement, listen for breath sounds, and feel for air from the nose or mouth. Begin CPR if not breathing.</p>
-                    </div>
-
-                    <div class="priority-card">
-                        <div class="priority-icon">
-                            <i class="fa-solid fa-heart"></i>
-                        </div>
-                        <h3>C - Circulation</h3>
-                        <p>Check for a pulse and look for signs of severe bleeding. Control any major bleeding immediately with direct pressure on the wound.</p>
-                    </div>
+            <!-- Critical Disclaimer -->
+            <div class="disclaimer-banner">
+                <div class="disclaimer-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div class="disclaimer-content">
+                    <h3>Medical Disclaimer</h3>
+                    <p>This information is for educational purposes only and does not constitute medical advice. Always call 911 for serious injuries including unconsciousness, difficulty breathing, severe bleeding, suspected spinal injury, or chest pain. When in doubt, seek professional medical help immediately.</p>
                 </div>
             </div>
 
-            <div class="firstaid-grid">
-                <div class="firstaid-card">
-                    <div class="firstaid-card-header">
-                        <div class="firstaid-card-icon">
-                            <i class="fa-solid fa-droplet"></i>
+            <!-- ABC Priority System -->
+            <div class="priority-system">
+                <h2><i class="fa-solid fa-ranking-star"></i> ABC Assessment Priority</h2>
+                <p class="section-subtitle">Always assess victims in this order before providing treatment</p>
+                
+                <div class="abc-grid">
+                    <div class="abc-card airway">
+                        <div class="abc-letter">A</div>
+                        <h3>Airway</h3>
+                        <div class="abc-content">
+                            <h4>Check & Clear</h4>
+                            <ul>
+                                <li>Look for visible obstructions in mouth/throat</li>
+                                <li>Tilt head back gently to open airway (if no neck injury)</li>
+                                <li>Remove any visible foreign objects carefully</li>
+                                <li>Never reach blindly into throat</li>
+                            </ul>
+                            <div class="abc-warning">
+                                <i class="fa-solid fa-exclamation-triangle"></i>
+                                <span>If neck or spinal injury suspected, do NOT move head</span>
+                            </div>
                         </div>
-                        <h3>Severe Bleeding</h3>
                     </div>
-                    <div class="firstaid-card-body">
-                        <ol class="firstaid-steps">
-                            <li class="firstaid-step">
-                                <div class="step-number">1</div>
-                                <div class="step-content">
-                                    <strong>Apply Direct Pressure</strong>
-                                    Use a clean cloth or sterile gauze and press firmly on the wound. Maintain pressure for at least 10-15 minutes without lifting to check.
-                                </div>
-                            </li>
-                            <li class="firstaid-step">
-                                <div class="step-number">2</div>
-                                <div class="step-content">
-                                    <strong>Elevate if Possible</strong>
-                                    Raise the injured area above the heart level if there's no suspected fracture. This helps reduce blood flow to the area.
-                                </div>
-                            </li>
-                            <li class="firstaid-step">
-                                <div class="step-number">3</div>
-                                <div class="step-content">
-                                    <strong>Bandage Securely</strong>
-                                    Once bleeding slows, apply a bandage firmly but not so tight that it cuts off circulation. Check fingers/toes for color and warmth.
-                                </div>
-                            </li>
-                            <li class="firstaid-step">
-                                <div class="step-number">4</div>
-                                <div class="step-content">
-                                    <strong>Seek Medical Help</strong>
-                                    Call 911 if bleeding doesn't stop after 15 minutes of pressure, if the wound is deep, or if caused by a puncture injury.
-                                </div>
-                            </li>
-                        </ol>
-                    </div>
-                </div>
 
-                <div class="firstaid-card">
-                    <div class="firstaid-card-header">
-                        <div class="firstaid-card-icon">
-                            <i class="fa-solid fa-bone"></i>
+                    <div class="abc-card breathing">
+                        <div class="abc-letter">B</div>
+                        <h3>Breathing</h3>
+                        <div class="abc-content">
+                            <h4>Assess Respiration</h4>
+                            <ul>
+                                <li>Look for chest rising and falling</li>
+                                <li>Listen for breath sounds near nose/mouth</li>
+                                <li>Feel for air movement on your cheek</li>
+                                <li>Check for 10 seconds maximum</li>
+                            </ul>
+                            <div class="abc-action">
+                                <strong>If not breathing:</strong> Begin CPR immediately (30 compressions, 2 breaths)
+                            </div>
                         </div>
-                        <h3>Fractures & Breaks</h3>
                     </div>
-                    <div class="firstaid-card-body">
-                        <ol class="firstaid-steps">
-                            <li class="firstaid-step">
-                                <div class="step-number">1</div>
-                                <div class="step-content">
-                                    <strong>Don't Move the Person</strong>
-                                    Keep the injured person still. Movement can worsen a fracture or cause a simple break to become compound.
-                                </div>
-                            </li>
-                            <li class="firstaid-step">
-                                <div class="step-number">2</div>
-                                <div class="step-content">
-                                    <strong>Immobilize the Area</strong>
-                                    Use a splint or rolled newspaper/magazine to immobilize the injured area. Pad the splint with cloth for comfort.
-                                </div>
-                            </li>
-                            <li class="firstaid-step">
-                                <div class="step-number">3</div>
-                                <div class="step-content">
-                                    <strong>Apply Ice</strong>
-                                    Wrap ice in cloth and apply to reduce swelling. Never apply ice directly to skin. Use 20 minutes on, 20 minutes off.
-                                </div>
-                            </li>
-                            <li class="firstaid-step">
-                                <div class="step-number">4</div>
-                                <div class="step-content">
-                                    <strong>Watch for Shock</strong>
-                                    Keep the person warm, calm, and lying down. Monitor breathing and consciousness while waiting for help.
-                                </div>
-                            </li>
-                        </ol>
-                    </div>
-                </div>
 
-                <div class="firstaid-card">
-                    <div class="firstaid-card-header">
-                        <div class="firstaid-card-icon">
-                            <i class="fa-solid fa-head-side-cough"></i>
+                    <div class="abc-card circulation">
+                        <div class="abc-letter">C</div>
+                        <h3>Circulation</h3>
+                        <div class="abc-content">
+                            <h4>Control Bleeding</h4>
+                            <ul>
+                                <li>Check for pulse at neck (carotid) or wrist (radial)</li>
+                                <li>Look for severe bleeding</li>
+                                <li>Assess skin color and temperature</li>
+                                <li>Watch for signs of shock</li>
+                            </ul>
+                            <div class="abc-action">
+                                <strong>Severe bleeding:</strong> Apply direct pressure immediately with clean cloth
+                            </div>
                         </div>
-                        <h3>Head Injuries</h3>
-                    </div>
-                    <div class="firstaid-card-body">
-                        <ol class="firstaid-steps">
-                            <li class="firstaid-step">
-                                <div class="step-number">1</div>
-                                <div class="step-content">
-                                    <strong>Keep Person Still</strong>
-                                    Don't move someone with a suspected head injury unless in immediate danger. Movement can worsen neck or spine injuries.
-                                </div>
-                            </li>
-                            <li class="firstaid-step">
-                                <div class="step-number">2</div>
-                                <div class="step-content">
-                                    <strong>Control Bleeding</strong>
-                                    Apply gentle pressure with clean cloth to any bleeding scalp wounds. Don't apply pressure if you suspect a skull fracture.
-                                </div>
-                            </li>
-                            <li class="firstaid-step">
-                                <div class="step-number">3</div>
-                                <div class="step-content">
-                                    <strong>Monitor Consciousness</strong>
-                                    Watch for confusion, drowsiness, vomiting, or unequal pupil size. These are signs of serious injury requiring immediate medical attention.
-                                </div>
-                            </li>
-                            <li class="firstaid-step">
-                                <div class="step-number">4</div>
-                                <div class="step-content">
-                                    <strong>Call 911 Immediately</strong>
-                                    Any head injury with loss of consciousness, confusion, or severe bleeding requires emergency medical care.
-                                </div>
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-
-                <div class="firstaid-card">
-                    <div class="firstaid-card-header">
-                        <div class="firstaid-card-icon">
-                            <i class="fa-solid fa-fire-flame-curved"></i>
-                        </div>
-                        <h3>Burns</h3>
-                    </div>
-                    <div class="firstaid-card-body">
-                        <ol class="firstaid-steps">
-                            <li class="firstaid-step">
-                                <div class="step-number">1</div>
-                                <div class="step-content">
-                                    <strong>Cool the Burn</strong>
-                                    Run cool (not cold) water over the burn for 10-20 minutes. Never use ice, as it can cause further damage to tissue.
-                                </div>
-                            </li>
-                            <li class="firstaid-step">
-                                <div class="step-number">2</div>
-                                <div class="step-content">
-                                    <strong>Remove Jewelry</strong>
-                                    Take off rings, watches, or tight clothing near the burn before swelling occurs. Don't remove clothing stuck to the burn.
-                                </div>
-                            </li>
-                            <li class="firstaid-step">
-                                <div class="step-number">3</div>
-                                <div class="step-content">
-                                    <strong>Cover with Clean Cloth</strong>
-                                    Use a sterile, non-stick bandage or clean cloth. Don't apply ointments, butter, or home remedies to serious burns.
-                                </div>
-                            </li>
-                            <li class="firstaid-step">
-                                <div class="step-number">4</div>
-                                <div class="step-content">
-                                    <strong>Seek Medical Care</strong>
-                                    Get medical help for burns larger than 3 inches, on face/hands/feet/genitals, or if the burn appears deep with white or charred skin.
-                                </div>
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-
-                <div class="firstaid-card">
-                    <div class="firstaid-card-header">
-                        <div class="firstaid-card-icon">
-                            <i class="fa-solid fa-syringe"></i>
-                        </div>
-                        <h3>Puncture Wounds</h3>
-                    </div>
-                    <div class="firstaid-card-body">
-                        <ol class="firstaid-steps">
-                            <li class="firstaid-step">
-                                <div class="step-number">1</div>
-                                <div class="step-content">
-                                    <strong>Don't Remove Object</strong>
-                                    If an object is embedded in the wound, leave it in place. Removing it could cause severe bleeding. Stabilize it with bandages.
-                                </div>
-                            </li>
-                            <li class="firstaid-step">
-                                <div class="step-number">2</div>
-                                <div class="step-content">
-                                    <strong>Clean Minor Wounds</strong>
-                                    For small punctures, wash with soap and water. Let it bleed a little to help clean out bacteria from inside the wound.
-                                </div>
-                            </li>
-                            <li class="firstaid-step">
-                                <div class="step-number">3</div>
-                                <div class="step-content">
-                                    <strong>Apply Antibiotic</strong>
-                                    Use antibiotic ointment on minor punctures and cover with a bandage. Change the bandage daily and watch for infection signs.
-                                </div>
-                            </li>
-                            <li class="firstaid-step">
-                                <div class="step-number">4</div>
-                                <div class="step-content">
-                                    <strong>Tetanus Shot Check</strong>
-                                    Puncture wounds have high infection risk. See a doctor if your tetanus shot isn't current (within 5-10 years).
-                                </div>
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-
-                <div class="firstaid-card">
-                    <div class="firstaid-card-header">
-                        <div class="firstaid-card-icon">
-                            <i class="fa-solid fa-skull-crossbones"></i>
-                        </div>
-                        <h3>Shock</h3>
-                    </div>
-                    <div class="firstaid-card-body">
-                        <ol class="firstaid-steps">
-                            <li class="firstaid-step">
-                                <div class="step-number">1</div>
-                                <div class="step-content">
-                                    <strong>Recognize the Signs</strong>
-                                    Look for pale/clammy skin, rapid pulse, shallow breathing, confusion, or unconsciousness. Shock is life-threatening and requires immediate action.
-                                </div>
-                            </li>
-                            <li class="firstaid-step">
-                                <div class="step-number">2</div>
-                                <div class="step-content">
-                                    <strong>Lay Person Down</strong>
-                                    Have the person lie flat on their back. Elevate their legs about 12 inches unless you suspect head, neck, or back injury.
-                                </div>
-                            </li>
-                            <li class="firstaid-step">
-                                <div class="step-number">3</div>
-                                <div class="step-content">
-                                    <strong>Keep Warm</strong>
-                                    Cover the person with a blanket or coat. Don't overheat. Maintain normal body temperature and keep them calm and still.
-                                </div>
-                            </li>
-                            <li class="firstaid-step">
-                                <div class="step-number">4</div>
-                                <div class="step-content">
-                                    <strong>Call 911</strong>
-                                    Shock requires emergency medical treatment. Monitor breathing and pulse while waiting for help. Begin CPR if needed.
-                                </div>
-                            </li>
-                        </ol>
                     </div>
                 </div>
             </div>
 
-            <div class="dontdo-section">
-                <h2><i class="fa-solid fa-hand"></i> Important: What NOT to Do</h2>
-                <div class="dontdo-grid">
-                    <div class="dontdo-item">
-                        <i class="fa-solid fa-xmark"></i>
-                        <p><strong>Don't Move Spinal Injuries</strong> Never move someone with a suspected neck or back injury unless they're in immediate danger. Movement can cause permanent paralysis.</p>
+            <!-- Common Earthquake Injuries -->
+            <div class="injuries-section">
+                <h2><i class="fa-solid fa-briefcase-medical"></i> Common Earthquake Injuries</h2>
+                <p class="section-subtitle">Step-by-step treatment protocols for the most frequent injuries</p>
+
+                <div class="injury-cards">
+                    <!-- Severe Bleeding -->
+                    <div class="injury-card critical">
+                        <div class="injury-header">
+                            <div class="injury-priority">CRITICAL</div>
+                            <div class="injury-icon" style="background: linear-gradient(135deg, #dc2626, #991b1b);">
+                                <i class="fa-solid fa-droplet"></i>
+                            </div>
+                            <div class="injury-title">
+                                <h3>Severe Bleeding (Hemorrhage)</h3>
+                                <span class="injury-time">⏱️ Act within 3-5 minutes</span>
+                            </div>
+                        </div>
+                        
+                        <div class="injury-body">
+                            <div class="injury-recognition">
+                                <h4><i class="fa-solid fa-eye"></i> Recognition</h4>
+                                <ul>
+                                    <li>Blood spurting or flowing continuously</li>
+                                    <li>Blood soaking through clothing/bandages</li>
+                                    <li>Victim becoming pale, weak, or confused</li>
+                                    <li>Rapid, weak pulse</li>
+                                </ul>
+                            </div>
+
+                            <div class="treatment-steps">
+                                <h4><i class="fa-solid fa-hand-holding-medical"></i> Treatment Protocol</h4>
+                                <div class="step-timeline">
+                                    <div class="treatment-step">
+                                        <div class="step-marker">1</div>
+                                        <div class="step-content">
+                                            <h5>Call 911 First</h5>
+                                            <p>Have someone call emergency services immediately. If alone, call after applying pressure if victim is conscious.</p>
+                                        </div>
+                                    </div>
+                                    <div class="treatment-step">
+                                        <div class="step-marker">2</div>
+                                        <div class="step-content">
+                                            <h5>Apply Direct Pressure</h5>
+                                            <p>Use sterile gauze or clean cloth. Press firmly directly on wound for minimum 10-15 minutes without lifting to check. Use your full palm, not fingertips.</p>
+                                        </div>
+                                    </div>
+                                    <div class="treatment-step">
+                                        <div class="step-marker">3</div>
+                                        <div class="step-content">
+                                            <h5>Elevate if Possible</h5>
+                                            <p>Raise injured area above heart level ONLY if no suspected fracture. Keep applying pressure while elevating.</p>
+                                        </div>
+                                    </div>
+                                    <div class="treatment-step">
+                                        <div class="step-marker">4</div>
+                                        <div class="step-content">
+                                            <h5>Apply Pressure Bandage</h5>
+                                            <p>Once bleeding slows, apply pressure bandage firmly but not so tight it cuts off circulation. Check fingers/toes for warmth and color every 10 minutes.</p>
+                                        </div>
+                                    </div>
+                                    <div class="treatment-step">
+                                        <div class="step-marker">5</div>
+                                        <div class="step-content">
+                                            <h5>Monitor for Shock</h5>
+                                            <p>Keep victim lying down, warm but not hot. Do not give food or drink. Monitor breathing and consciousness until help arrives.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="injury-donts">
+                                <h4><i class="fa-solid fa-ban"></i> Do NOT</h4>
+                                <ul>
+                                    <li>Remove objects embedded in wound - stabilize with bandages around it</li>
+                                    <li>Apply tourniquet unless life-threatening bleeding cannot be controlled</li>
+                                    <li>Peek at wound frequently - maintain pressure for full time</li>
+                                    <li>Use direct pressure on eye injuries, skull fractures, or protruding bones</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="dontdo-item">
-                        <i class="fa-solid fa-xmark"></i>
-                        <p><strong>Don't Give Food or Drink</strong> Don't give anything by mouth to someone who is unconscious, having trouble breathing, or may need surgery. This includes water.</p>
+                    <!-- Fractures -->
+                    <div class="injury-card serious">
+                        <div class="injury-header">
+                            <div class="injury-priority serious-tag">SERIOUS</div>
+                            <div class="injury-icon" style="background: linear-gradient(135deg, #ea580c, #c2410c);">
+                                <i class="fa-solid fa-bone"></i>
+                            </div>
+                            <div class="injury-title">
+                                <h3>Fractures & Broken Bones</h3>
+                                <span class="injury-time">⏱️ Immobilize immediately</span>
+                            </div>
+                        </div>
+                        
+                        <div class="injury-body">
+                            <div class="injury-recognition">
+                                <h4><i class="fa-solid fa-eye"></i> Recognition</h4>
+                                <ul>
+                                    <li>Deformity, swelling, or abnormal positioning</li>
+                                    <li>Severe pain, especially with movement</li>
+                                    <li>Inability to bear weight or use limb</li>
+                                    <li>Grating sensation or sound (crepitus)</li>
+                                    <li>Bone protruding through skin (open fracture)</li>
+                                </ul>
+                            </div>
+
+                            <div class="treatment-steps">
+                                <h4><i class="fa-solid fa-hand-holding-medical"></i> Treatment Protocol</h4>
+                                <div class="step-timeline">
+                                    <div class="treatment-step">
+                                        <div class="step-marker">1</div>
+                                        <div class="step-content">
+                                            <h5>Do Not Move Victim</h5>
+                                            <p>Keep person completely still. Movement can turn simple fracture into compound fracture, causing severe complications.</p>
+                                        </div>
+                                    </div>
+                                    <div class="treatment-step">
+                                        <div class="step-marker">2</div>
+                                        <div class="step-content">
+                                            <h5>Call 911</h5>
+                                            <p>All suspected fractures require professional medical evaluation and X-rays for proper diagnosis.</p>
+                                        </div>
+                                    </div>
+                                    <div class="treatment-step">
+                                        <div class="step-marker">3</div>
+                                        <div class="step-content">
+                                            <h5>Immobilize the Area</h5>
+                                            <p>Splint above and below the injury. Use rigid materials (boards, magazines, cardboard). Pad splint with cloth for comfort. Secure with bandages or tape - firm but not tight.</p>
+                                        </div>
+                                    </div>
+                                    <div class="treatment-step">
+                                        <div class="step-marker">4</div>
+                                        <div class="step-content">
+                                            <h5>Apply Ice</h5>
+                                            <p>Wrap ice pack in cloth (never direct skin contact). Apply for 20 minutes, off 20 minutes. Reduces swelling and pain.</p>
+                                        </div>
+                                    </div>
+                                    <div class="treatment-step">
+                                        <div class="step-marker">5</div>
+                                        <div class="step-content">
+                                            <h5>Monitor Circulation</h5>
+                                            <p>Check area beyond injury every 15 minutes. Look for blue/white color, numbness, coldness, or tingling. Loosen splint if these occur.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="injury-donts">
+                                <h4><i class="fa-solid fa-ban"></i> Do NOT</h4>
+                                <ul>
+                                    <li>Try to realign or straighten the bone</li>
+                                    <li>Push protruding bone back into wound</li>
+                                    <li>Move victim unless necessary for safety</li>
+                                    <li>Give food, drink, or medication by mouth</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="dontdo-item">
-                        <i class="fa-solid fa-xmark"></i>
-                        <p><strong>Don't Remove Embedded Objects</strong> Objects stuck in wounds should only be removed by medical professionals. Removal can cause severe bleeding.</p>
+                    <!-- Head Injuries -->
+                    <div class="injury-card critical">
+                        <div class="injury-header">
+                            <div class="injury-priority">CRITICAL</div>
+                            <div class="injury-icon" style="background: linear-gradient(135deg, #7c3aed, #6d28d9);">
+                                <i class="fa-solid fa-brain"></i>
+                            </div>
+                            <div class="injury-title">
+                                <h3>Head & Brain Injuries</h3>
+                                <span class="injury-time">⏱️ Call 911 for any head injury with LOC</span>
+                            </div>
+                        </div>
+                        
+                        <div class="injury-body">
+                            <div class="injury-recognition">
+                                <h4><i class="fa-solid fa-eye"></i> Danger Signs</h4>
+                                <ul>
+                                    <li>Loss of consciousness (even briefly)</li>
+                                    <li>Confusion, disorientation, or amnesia</li>
+                                    <li>Severe headache that worsens</li>
+                                    <li>Unequal pupil sizes</li>
+                                    <li>Clear fluid from nose or ears</li>
+                                    <li>Repeated vomiting</li>
+                                    <li>Seizures</li>
+                                    <li>Slurred speech or vision problems</li>
+                                </ul>
+                            </div>
+
+                            <div class="treatment-steps">
+                                <h4><i class="fa-solid fa-hand-holding-medical"></i> Treatment Protocol</h4>
+                                <div class="step-timeline">
+                                    <div class="treatment-step">
+                                        <div class="step-marker">1</div>
+                                        <div class="step-content">
+                                            <h5>Call 911 Immediately</h5>
+                                            <p>Any head injury with loss of consciousness, confusion, or danger signs requires emergency medical care. Brain injury can worsen rapidly.</p>
+                                        </div>
+                                    </div>
+                                    <div class="treatment-step">
+                                        <div class="step-marker">2</div>
+                                        <div class="step-content">
+                                            <h5>Keep Victim Still</h5>
+                                            <p>Assume neck/spine injury until proven otherwise. Do not move head or neck. Stabilize head with hands on both sides if victim must be moved for safety.</p>
+                                        </div>
+                                    </div>
+                                    <div class="treatment-step">
+                                        <div class="step-marker">3</div>
+                                        <div class="step-content">
+                                            <h5>Control Scalp Bleeding</h5>
+                                            <p>Apply gentle pressure with clean cloth. Do NOT apply pressure if you suspect skull fracture (depression, soft area). Simply cover wound.</p>
+                                        </div>
+                                    </div>
+                                    <div class="treatment-step">
+                                        <div class="step-marker">4</div>
+                                        <div class="step-content">
+                                            <h5>Monitor Continuously</h5>
+                                            <p>Check consciousness level every 5 minutes. Note pupil size, breathing rate, and responsiveness. Report all changes to paramedics.</p>
+                                        </div>
+                                    </div>
+                                    <div class="treatment-step">
+                                        <div class="step-marker">5</div>
+                                        <div class="step-content">
+                                            <h5>Prevent Shock</h5>
+                                            <p>Keep victim lying flat (unless vomiting). Cover with blanket to maintain body temperature. Do not give anything by mouth.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="injury-donts">
+                                <h4><i class="fa-solid fa-ban"></i> Do NOT</h4>
+                                <ul>
+                                    <li>Move victim unnecessarily</li>
+                                    <li>Remove any objects embedded in skull</li>
+                                    <li>Give aspirin or ibuprofen (increases bleeding risk)</li>
+                                    <li>Let victim fall asleep without medical clearance</li>
+                                    <li>Apply direct pressure to depressed skull fracture</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="dontdo-item">
-                        <i class="fa-solid fa-xmark"></i>
-                        <p><strong>Don't Apply Tourniquets Unnecessarily</strong> Tourniquets should only be used as a last resort for life-threatening bleeding that can't be controlled by direct pressure.</p>
+                    <!-- Burns -->
+                    <div class="injury-card serious">
+                        <div class="injury-header">
+                            <div class="injury-priority serious-tag">SERIOUS</div>
+                            <div class="injury-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                                <i class="fa-solid fa-fire-flame-curved"></i>
+                            </div>
+                            <div class="injury-title">
+                                <h3>Burns (Thermal, Chemical, Electrical)</h3>
+                                <span class="injury-time">⏱️ Cool immediately for 10-20 minutes</span>
+                            </div>
+                        </div>
+                        
+                        <div class="injury-body">
+                            <div class="burn-classification">
+                                <h4><i class="fa-solid fa-layer-group"></i> Burn Classification</h4>
+                                <div class="burn-types">
+                                    <div class="burn-type">
+                                        <strong>1st Degree:</strong> Red, painful, no blisters (like sunburn)
+                                    </div>
+                                    <div class="burn-type">
+                                        <strong>2nd Degree:</strong> Blisters, severe pain, red/white appearance
+                                    </div>
+                                    <div class="burn-type critical-burn">
+                                        <strong>3rd Degree:</strong> White/charred skin, little/no pain (nerve damage) - CALL 911
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="treatment-steps">
+                                <h4><i class="fa-solid fa-hand-holding-medical"></i> Treatment Protocol</h4>
+                                <div class="step-timeline">
+                                    <div class="treatment-step">
+                                        <div class="step-marker">1</div>
+                                        <div class="step-content">
+                                            <h5>Stop the Burning</h5>
+                                            <p>Remove from heat source. For fire: Stop, Drop, Roll. For chemical: Flush with water for 20 minutes. For electrical: Do not touch victim until power is off.</p>
+                                        </div>
+                                    </div>
+                                    <div class="treatment-step">
+                                        <div class="step-marker">2</div>
+                                        <div class="step-content">
+                                            <h5>Cool the Burn</h5>
+                                            <p>Run cool (not cold) water over burn for 10-20 minutes. Never use ice - causes tissue damage. Remove jewelry/tight clothing before swelling starts.</p>
+                                        </div>
+                                    </div>
+                                    <div class="treatment-step">
+                                        <div class="step-marker">3</div>
+                                        <div class="step-content">
+                                            <h5>Assess & Call for Help</h5>
+                                            <p>Call 911 if: burn larger than 3 inches, on face/hands/feet/genitals, appears white/charred, victim is child/elderly, or caused by chemicals/electricity.</p>
+                                        </div>
+                                    </div>
+                                    <div class="treatment-step">
+                                        <div class="step-marker">4</div>
+                                        <div class="step-content">
+                                            <h5>Cover Burn</h5>
+                                            <p>Use sterile, non-stick bandage or clean cloth. Do not use adhesive bandages. Do not apply ointments, butter, or home remedies to serious burns.</p>
+                                        </div>
+                                    </div>
+                                    <div class="treatment-step">
+                                        <div class="step-marker">5</div>
+                                        <div class="step-content">
+                                            <h5>Prevent Shock</h5>
+                                            <p>For large burns, treat for shock: lay victim flat, elevate feet 12 inches, cover with blanket. Monitor breathing and consciousness.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="injury-donts">
+                                <h4><i class="fa-solid fa-ban"></i> Do NOT</h4>
+                                <ul>
+                                    <li>Apply ice, butter, oil, or ointments to serious burns</li>
+                                    <li>Break blisters - increases infection risk</li>
+                                    <li>Remove clothing stuck to burn</li>
+                                    <li>Touch burn with dirty hands or materials</li>
+                                    <li>Use fluffy cotton or material that sheds fibers</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="dontdo-item">
-                        <i class="fa-solid fa-xmark"></i>
-                        <p><strong>Don't Use Home Remedies on Serious Burns</strong> Never put butter, oil, ice, or ointments on serious burns. These can cause infection and worsen tissue damage.</p>
+                    <!-- Shock -->
+                    <div class="injury-card critical">
+                        <div class="injury-header">
+                            <div class="injury-priority">CRITICAL</div>
+                            <div class="injury-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
+                                <i class="fa-solid fa-heart-pulse"></i>
+                            </div>
+                            <div class="injury-title">
+                                <h3>Shock (Hypovolemic/Traumatic)</h3>
+                                <span class="injury-time">⏱️ Life-threatening - Act immediately</span>
+                            </div>
+                        </div>
+                        
+                        <div class="injury-body">
+                            <div class="injury-recognition">
+                                <h4><i class="fa-solid fa-eye"></i> Recognition</h4>
+                                <ul>
+                                    <li>Pale, cold, clammy skin</li>
+                                    <li>Rapid, weak pulse (over 100 bpm)</li>
+                                    <li>Rapid, shallow breathing</li>
+                                    <li>Weakness, dizziness, confusion</li>
+                                    <li>Nausea or vomiting</li>
+                                    <li>Blue lips and fingernails</li>
+                                    <li>Altered consciousness or unresponsiveness</li>
+                                </ul>
+                            </div>
+
+                            <div class="treatment-steps">
+                                <h4><i class="fa-solid fa-hand-holding-medical"></i> Treatment Protocol</h4>
+                                <div class="step-timeline">
+                                    <div class="treatment-step">
+                                        <div class="step-marker">1</div>
+                                        <div class="step-content">
+                                            <h5>Call 911 Immediately</h5>
+                                            <p>Shock is life-threatening and requires immediate advanced medical care. Do not delay.</p>
+                                        </div>
+                                    </div>
+                                    <div class="treatment-step">
+                                        <div class="step-marker">2</div>
+                                        <div class="step-content">
+                                            <h5>Position Victim</h5>
+                                            <p>Lay person flat on back. Elevate legs 12 inches (unless head, neck, back, or leg injury suspected). This increases blood flow to vital organs.</p>
+                                        </div>
+                                    </div>
+                                    <div class="treatment-step">
+                                        <div class="step-marker">3</div>
+                                        <div class="step-content">
+                                            <h5>Maintain Body Temperature</h5>
+                                            <p>Cover with blanket to prevent heat loss. Do not overheat. Keep victim warm but not hot. Remove wet clothing if possible.</p>
+                                        </div>
+                                    </div>
+                                    <div class="treatment-step">
+                                        <div class="step-marker">4</div>
+                                        <div class="step-content">
+                                            <h5>Control Bleeding</h5>
+                                            <p>If shock is due to bleeding, apply direct pressure to wounds while maintaining shock position. Do not elevate bleeding limb above heart.</p>
+                                        </div>
+                                    </div>
+                                    <div class="treatment-step">
+                                        <div class="step-marker">5</div>
+                                        <div class="step-content">
+                                            <h5>Monitor Continuously</h5>
+                                            <p>Check breathing, pulse, and consciousness every 2-3 minutes. Be prepared to begin CPR if victim stops breathing. Reassure and keep calm.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="injury-donts">
+                                <h4><i class="fa-solid fa-ban"></i> Do NOT</h4>
+                                <ul>
+                                    <li>Give anything by mouth (food, water, medication)</li>
+                                    <li>Move victim unnecessarily</li>
+                                    <li>Leave victim alone</li>
+                                    <li>Wait to see if condition improves - call 911 immediately</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="dontdo-item">
-                        <i class="fa-solid fa-xmark"></i>
-                        <p><strong>Don't Delay Emergency Care</strong> When in doubt, call 911. It's better to be safe than sorry. Professional medical help can make the difference between life and death.</p>
+                    <!-- Crush Injuries -->
+                    <div class="injury-card serious">
+                        <div class="injury-header">
+                            <div class="injury-priority serious-tag">SERIOUS</div>
+                            <div class="injury-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                                <i class="fa-solid fa-house-crack"></i>
+                            </div>
+                            <div class="injury-title">
+                                <h3>Crush Injuries & Entrapment</h3>
+                                <span class="injury-time">⏱️ Do not remove heavy object without medical help</span>
+                            </div>
+                        </div>
+                        
+                        <div class="injury-body">
+                            <div class="injury-recognition">
+                                <h4><i class="fa-solid fa-eye"></i> Recognition</h4>
+                                <ul>
+                                    <li>Body part trapped under heavy object > 15 minutes</li>
+                                    <li>Severe pain in compressed area</li>
+                                    <li>Numbness or tingling</li>
+                                    <li>Pale or mottled skin beyond injury</li>
+                                    <li>Absence of pulse beyond crush site</li>
+                                </ul>
+                            </div>
+
+                            <div class="crush-warning">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                <div>
+                                    <strong>Crush Syndrome Risk:</strong> Releasing pressure after prolonged crushing (>15 min) can release toxins causing cardiac arrest. Always call 911 BEFORE removing heavy objects from victims.
+                                </div>
+                            </div>
+
+                            <div class="treatment-steps">
+                                <h4><i class="fa-solid fa-hand-holding-medical"></i> Treatment Protocol</h4>
+                                <div class="step-timeline">
+                                    <div class="treatment-step">
+                                        <div class="step-marker">1</div>
+                                        <div class="step-content">
+                                            <h5>Call 911 First</h5>
+                                            <p>Do not remove crushing object until paramedics arrive if victim has been trapped >15 minutes. Sudden release can cause fatal complications.</p>
+                                        </div>
+                                    </div>
+                                    <div class="treatment-step">
+                                        <div class="step-marker">2</div>
+                                        <div class="step-content">
+                                            <h5>Stabilize Object</h5>
+                                            <p>If possible, stabilize crushing object to prevent further movement or pressure. Do not try to lift heavy objects alone - wait for rescue team.</p>
+                                        </div>
+                                    </div>
+                                    <div class="treatment-step">
+                                        <div class="step-marker">3</div>
+                                        <div class="step-content">
+                                            <h5>Reassure Victim</h5>
+                                            <p>Keep victim calm and still. Explain that help is coming. Monitor consciousness and breathing. Keep talking to maintain responsiveness.</p>
+                                        </div>
+                                    </div>
+                                    <div class="treatment-step">
+                                        <div class="step-marker">4</div>
+                                        <div class="step-content">
+                                            <h5>After Release (Medical Personnel Present)</h5>
+                                            <p>Once medical team releases pressure, immediately apply pressure bandage to any bleeding. Immobilize injured area. Monitor for shock symptoms.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="injury-donts">
+                                <h4><i class="fa-solid fa-ban"></i> Do NOT</h4>
+                                <ul>
+                                    <li>Remove heavy objects if victim trapped >15 minutes without medical supervision</li>
+                                    <li>Give fluids before medical clearance</li>
+                                    <li>Attempt to free victim alone - get help</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Reference CPR -->
+             <div class="cpr-section">
+            <h2>
+                <i class="fa-solid fa-heartbeat"></i>
+                CPR Quick Reference
+            </h2>
+
+            <div class="cpr-card">
+                <div class="cpr-header">
+                    <h3>Hands-Only CPR (Adults)</h3>
+                    <p>Use if victim is unresponsive and not breathing normally</p>
+                </div>
+
+                <div class="cpr-steps">
+                    <div class="cpr-step">
+                        <div class="cpr-number">1</div>
+                        <h4>Call 911</h4>
+                        <p>Activate emergency services immediately.</p>
+                    </div>
+
+                    <div class="cpr-step">
+                        <div class="cpr-number">2</div>
+                        <h4>Push Hard & Fast</h4>
+                        <p>100–120 compressions per minute in the center of the chest.</p>
+                    </div>
+
+                    <div class="cpr-step">
+                        <div class="cpr-number">3</div>
+                        <h4>Allow Full Recoil</h4>
+                        <p>Let the chest fully rise between compressions.</p>
+                    </div>
+
+                    <div class="cpr-step">
+                        <div class="cpr-number">4</div>
+                        <h4>Continue Until Help Arrives</h4>
+                        <p>Do not stop unless help takes over.</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-</body>
 
+    </div>
+
+    <!-- Page JS -->
+    <script th:src="@{/js/User/firstAid.js}"></script>
+
+</section>
+</body>
 </html>

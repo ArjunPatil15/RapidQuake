@@ -47,4 +47,19 @@ public class HomeController {
 	public String firstAid() {
 	    return "firstAid";
 	}
+	
+	@GetMapping("/alerts")
+	public String news() {
+	    return "news";
+	}
+	
+	@GetMapping("/about")
+	public String about() {
+	    return "about";
+	}
+
+	@GetMapping("/safety")
+	public String safetyTips() {
+	    return "safety";
+	}
 }

@@ -31,3 +31,26 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Ignore ONLY News-related Java files
+
+# Controller
+src/main/java/com/rapidquake/controller/NewsController.java
+
+# Model
+src/main/java/com/rapidquake/model/EarthquakeNews.java
+
+# Service
+src/main/java/com/rapidquake/service/EarthquakeNewsService.java
+
+# Service Impl
+src/main/java/com/rapidquake/service/impl/EarthquakeNewsServiceImpl.java
+
+# HTML
+src/main/resources/templates/news.html
+
+# CSS
+src/main/resources/static/css/news.css
+
+# JS
+src/main/resources/static/js/news.js

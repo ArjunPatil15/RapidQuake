@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::Layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earthquake Safety Guide - RapidQuake</title>
+</head>
+
+<body>
+    <section>
+        <link rel="stylesheet" th:href="@{/css/safety.css}">
+        
+        <!-- Hero Section -->
+        <div class="safety-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <i class="fa-solid fa-shield-halved me-3"></i>
+                        Earthquake Safety Guide
+                    </h1>
+                    <p class="hero-subtitle">Your Complete Guide to Staying Safe Before, During, and After an Earthquake</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="container safety-container">
+            
+            <!-- Quick Actions Banner -->
+            <div class="alert-banner">
+                <div class="alert-icon">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div class="alert-content">
+                    <h3>During an Earthquake: DROP, COVER, and HOLD ON!</h3>
+                    <p>This is the most important action you can take. Drop to your hands and knees, cover your head and neck, and hold on until the shaking stops.</p>
+                </div>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <div class="safety-tabs">
+                <button class="tab-btn active" onclick="showTab('before')">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    Before
+                </button>
+                <button class="tab-btn" onclick="showTab('during')">
+                    <i class="fa-solid fa-person-shelter"></i>
+                    During
+                </button>
+                <button class="tab-btn" onclick="showTab('after')">
+                    <i class="fa-solid fa-house-circle-check"></i>
+                    After
+                </button>
+            </div>
+
+            <!-- Before Earthquake Tab -->
+            <div id="before-tab" class="tab-content active">
+                <div class="section-header">
+                    <h2><i class="fa-solid fa-clipboard-list me-2"></i>Before an Earthquake</h2>
+                    <p class="section-subtitle">Preparation is key to survival. Take these steps now to protect yourself and your family.</p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="safety-card">
+                            <div class="card-header">
+                                <i class="fa-solid fa-house-circle-check"></i>
+                                <h3>Secure Your Home</h3>
+                            </div>
+                            <ul class="safety-list">
+                                <li><strong>Anchor heavy furniture</strong> like bookcases, cabinets, and water heaters to wall studs</li>
+                                <li><strong>Install safety latches</strong> on cabinet doors to prevent contents from spilling</li>
+                                <li><strong>Store heavy items</strong> on lower shelves and secure breakables</li>
+                                <li><strong>Check your home's structure</strong> for weaknesses and make necessary repairs</li>
+                                <li><strong>Know how to shut off</strong> gas, water, and electricity in your home</li>
+                                <li><strong>Repair defective wiring</strong> and leaky gas connections - these can cause fires</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="safety-card">
+                            <div class="card-header">
+                                <i class="fa-solid fa-kit-medical"></i>
+                                <h3>Prepare Emergency Supplies</h3>
+                            </div>
+                            <ul class="safety-list">
+                                <li><strong>Water:</strong> 1 gallon per person per day for at least 3 days</li>
+                                <li><strong>Food:</strong> Non-perishable food for at least 3 days</li>
+                                <li><strong>First aid kit</strong> with essential medications</li>
+                                <li><strong>Flashlight and batteries</strong> (avoid candles due to fire risk)</li>
+                                <li><strong>Battery-powered or hand-crank radio</strong></li>
+                                <li><strong>Cell phone with chargers</strong> and backup battery</li>
+                                <li><strong>Whistle</strong> to signal for help</li>
+                                <li><strong>Dust masks, plastic sheeting, and duct tape</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="safety-card">
+                            <div class="card-header">
+                                <i class="fa-solid fa-people-group"></i>
+                                <h3>Create a Family Plan</h3>
+                            </div>
+                            <ul class="safety-list">
+                                <li><strong>Establish a meeting place</strong> outside your home and neighborhood</li>
+                                <li><strong>Designate an out-of-state contact</strong> person for family members to call</li>
+                                <li><strong>Practice Drop, Cover, and Hold On</strong> drills with your family</li>
+                                <li><strong>Identify safe spots</strong> in every room (under sturdy tables, against interior walls)</li>
+                                <li><strong>Keep important documents</strong> in a waterproof container</li>
+                                <li><strong>Plan for pets</strong> and service animals</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="safety-card">
+                            <div class="card-header">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                                <h3>Educate Yourself</h3>
+                            </div>
+                            <ul class="safety-list">
+                                <li><strong>Learn about earthquake risks</strong> in your area</li>
+                                <li><strong>Understand building codes</strong> and retrofit requirements</li>
+                                <li><strong>Take a first aid and CPR course</strong></li>
+                                <li><strong>Know your workplace</strong> emergency procedures</li>
+                                <li><strong>Sign up for RapidQuake alerts</strong> for real-time warnings</li>
+                                <li><strong>Participate in earthquake drills</strong> like ShakeOut</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- During Earthquake Tab -->
+            <div id="during-tab" class="tab-content">
+                <div class="section-header">
+                    <h2><i class="fa-solid fa-person-shelter me-2"></i>During an Earthquake</h2>
+                    <p class="section-subtitle">Quick action can save your life. Follow these guidelines based on your location.</p>
+                </div>
+
+                <div class="critical-action">
+                    <div class="action-steps">
+                        <div class="action-step">
+                            <div class="step-icon drop">
+                                <i class="fa-solid fa-arrow-down"></i>
+                            </div>
+                            <h3>DROP</h3>
+                            <p>Drop to your hands and knees before the earthquake knocks you down</p>
+                        </div>
+                        <div class="action-step">
+                            <div class="step-icon cover">
+                                <i class="fa-solid fa-shield"></i>
+                            </div>
+                            <h3>COVER</h3>
+                            <p>Cover your head and neck with your arms. Crawl under a sturdy desk or table if nearby</p>
+                        </div>
+                        <div class="action-step">
+                            <div class="step-icon hold">
+                                <i class="fa-solid fa-hand-fist"></i>
+                            </div>
+                            <h3>HOLD ON</h3>
+                            <p>Hold on to your shelter and be ready to move with it until shaking stops</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-4">
+                    <div class="col-lg-4">
+                        <div class="location-card">
+                            <div class="location-icon">
+                                <i class="fa-solid fa-house"></i>
+                            </div>
+                            <h3>If Indoors</h3>
+                            <ul class="safety-list compact">
+                                <li><strong>Stay inside</strong> - do NOT run outside</li>
+                                <li><strong>Get under a desk or table</strong> and hold on</li>
+                                <li><strong>Stay away from windows,</strong> mirrors, and heavy objects</li>
+                                <li><strong>If in bed,</strong> stay there and cover your head with a pillow</li>
+                                <li><strong>If in a doorway,</strong> only use it if you know it's strongly supported</li>
+                                <li><strong>In a high-rise,</strong> stay away from windows and outside walls</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="location-card">
+                            <div class="location-icon">
+                                <i class="fa-solid fa-road"></i>
+                            </div>
+                            <h3>If Outdoors</h3>
+                            <ul class="safety-list compact">
+                                <li><strong>Move away from buildings,</strong> power lines, and trees</li>
+                                <li><strong>Drop to the ground</strong> and cover your head and neck</li>
+                                <li><strong>Stay in the open</strong> until shaking stops</li>
+                                <li><strong>Watch for falling debris</strong> from buildings</li>
+                                <li><strong>Be aware of landslides</strong> if on a slope</li>
+                                <li><strong>Stay clear of overhead hazards</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="location-card">
+                            <div class="location-icon">
+                                <i class="fa-solid fa-car"></i>
+                            </div>
+                            <h3>If in a Vehicle</h3>
+                            <ul class="safety-list compact">
+                                <li><strong>Pull over safely</strong> and stop</li>
+                                <li><strong>Avoid bridges, overpasses,</strong> and power lines</li>
+                                <li><strong>Stay inside</strong> with your seatbelt on</li>
+                                <li><strong>Cover your head</strong> below window level</li>
+                                <li><strong>Wait until shaking stops</strong> before resuming driving</li>
+                                <li><strong>Drive carefully</strong> and watch for road damage</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning-box mt-4">
+                    <i class="fa-solid fa-exclamation-triangle"></i>
+                    <div>
+                        <h4>What NOT to Do:</h4>
+                        <ul>
+                            <li>Do NOT run outside during shaking</li>
+                            <li>Do NOT stand in doorways (unless you know they're reinforced)</li>
+                            <li>Do NOT use elevators</li>
+                            <li>Do NOT light matches or turn on switches (gas leaks may cause explosions)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- After Earthquake Tab -->
+            <div id="after-tab" class="tab-content">
+                <div class="section-header">
+                    <h2><i class="fa-solid fa-house-circle-check me-2"></i>After an Earthquake</h2>
+                    <p class="section-subtitle">The danger isn't over. Follow these steps to ensure continued safety.</p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="safety-card priority">
+                            <div class="card-header">
+                                <i class="fa-solid fa-clock"></i>
+                                <h3>Immediate Actions (First Hour)</h3>
+                            </div>
+                            <ul class="safety-list">
+                                <li><strong>Check yourself and others</strong> for injuries - provide first aid</li>
+                                <li><strong>Look for hazards</strong> - fire, gas leaks, damaged electrical wiring</li>
+                                <li><strong>If you smell gas,</strong> open windows, shut off the main valve, and exit</li>
+                                <li><strong>Turn off utilities</strong> if damage is suspected</li>
+                                <li><strong>Inspect your home</strong> for structural damage</li>
+                                <li><strong>Expect aftershocks</strong> - Drop, Cover, Hold On each time</li>
+                                <li><strong>Stay out of damaged buildings</strong></li>
+                                <li><strong>Use text messages</strong> instead of calls (less congestion)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="safety-card">
+                            <div class="card-header">
+                                <i class="fa-solid fa-users-gear"></i>
+                                <h3>Communication & Coordination</h3>
+                            </div>
+                            <ul class="safety-list">
+                                <li><strong>Contact your family</strong> using your emergency plan</li>
+                                <li><strong>Listen to emergency broadcasts</strong> on radio</li>
+                                <li><strong>Follow official instructions</strong> from authorities</li>
+                                <li><strong>Check on neighbors</strong> who may need help</li>
+                                <li><strong>Stay informed</strong> via RapidQuake app for aftershock alerts</li>
+                                <li><strong>Do not spread rumors</strong> - rely on official sources</li>
+                                <li><strong>Register your status</strong> with Safe and Well registry</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="safety-card">
+                            <div class="card-header">
+                                <i class="fa-solid fa-house-chimney-crack"></i>
+                                <h3>Property & Safety Inspection</h3>
+                            </div>
+                            <ul class="safety-list">
+                                <li><strong>Document damage</strong> with photos for insurance</li>
+                                <li><strong>Check chimney</strong> for cracks before using fireplace</li>
+                                <li><strong>Inspect utilities:</strong> water, gas, and electrical systems</li>
+                                <li><strong>Clean up spills</strong> of hazardous materials carefully</li>
+                                <li><strong>Open cabinets carefully</strong> - contents may fall</li>
+                                <li><strong>Stay clear of damaged areas</strong> until cleared by professionals</li>
+                                <li><strong>Wear protective gear</strong> when cleaning up debris</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="safety-card">
+                            <div class="card-header">
+                                <i class="fa-solid fa-heart-pulse"></i>
+                                <h3>Health & Well-being</h3>
+                            </div>
+                            <ul class="safety-list">
+                                <li><strong>Drink safe water</strong> - bottled or boiled if tap water is unsafe</li>
+                                <li><strong>Eat emergency food supplies</strong> first</li>
+                                <li><strong>Maintain hygiene</strong> to prevent illness</li>
+                                <li><strong>Watch for emotional trauma</strong> - seek counseling if needed</li>
+                                <li><strong>Get adequate rest</strong> during recovery</li>
+                                <li><strong>Continue medications</strong> as prescribed</li>
+                                <li><strong>Protect yourself from mosquitoes</strong> if water has accumulated</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box mt-4">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <div>
+                        <h4>Recovery Timeline:</h4>
+                        <p><strong>First 72 hours:</strong> Focus on safety, first aid, and securing your environment</p>
+                        <p><strong>First week:</strong> Begin cleanup, contact insurance, start damage assessment</p>
+                        <p><strong>First month:</strong> Work on repairs, seek assistance programs, maintain emergency preparedness</p>
+                        <p><strong>Long-term:</strong> Complete repairs, update emergency plans, participate in community resilience efforts</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emergency Contacts Section -->
+            <div class="emergency-contacts">
+                <h2><i class="fa-solid fa-phone me-2"></i>Emergency Contacts</h2>
+                <div class="row g-3">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="contact-card emergency">
+                            <i class="fa-solid fa-truck-medical"></i>
+                            <h3>Emergency Services</h3>
+                            <p class="contact-number">911</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="contact-card">
+                            <i class="fa-solid fa-fire"></i>
+                            <h3>Fire Department</h3>
+                            <p class="contact-number">911</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="contact-card">
+                            <i class="fa-solid fa-house-flood-water"></i>
+                            <h3>Gas Company</h3>
+                            <p class="contact-number">1-800-GAS-LEAK</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="contact-card">
+                            <i class="fa-solid fa-bolt"></i>
+                            <h3>Electric Company</h3>
+                            <p class="contact-number">1-800-POWER-OUT</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Download Section -->
+            <div class="download-section">
+                <div class="row align-items-center">
+                    <div class="col-lg-8 mb-3 mb-lg-0">
+                        <h3><i class="fa-solid fa-download me-2"></i>Download Safety Checklist</h3>
+                        <p>Get a printable PDF version of this safety guide to keep with your emergency supplies.</p>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <a href="#" class="btn-download">
+                            <i class="fa-solid fa-file-pdf me-2"></i>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script th:src="@{/js/safety.js}"></script>
+    </section>
+</body>
+
+</html>
