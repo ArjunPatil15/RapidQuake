@@ -1,0 +1,623 @@
+/* emergencyContacts.css */
+
+:root {
+    --emergency-red: #dc2626;
+    --emergency-dark: #991b1b;
+    --fire-orange: #ea580c;
+    --police-blue: #2563eb;
+    --medical-red: #b91c1c;
+    --fema-purple: #7c3aed;
+    --redcross-red: #dc2626;
+    --utility-green: #059669;
+}
+
+section {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Hero Section */
+.emergency-hero {
+    background: linear-gradient(135deg, var(--emergency-red) 0%, var(--emergency-dark) 100%);
+    padding: 100px 20px 80px;
+    margin-top: 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+.emergency-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h100v100H0z" fill="none"/><path d="M50 20L60 40L80 50L60 60L50 80L40 60L20 50L40 40z" fill="rgba(255,255,255,0.05)"/></svg>') repeat;
+    opacity: 0.3;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-icon {
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 30px;
+    font-size: 3rem;
+    color: white;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); }
+    50% { transform: scale(1.05); box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4); }
+}
+
+.emergency-hero h1 {
+    color: white;
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+/* Alert Banner */
+.alert-banner {
+    background: #7f1d1d;
+    padding: 30px 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.alert-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.alert-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #fef2f2;
+    flex-shrink: 0;
+    animation: warning-pulse 1.5s infinite;
+}
+
+@keyframes warning-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.alert-text {
+    flex: 1;
+    min-width: 250px;
+}
+
+.alert-text h3 {
+    color: white;
+    margin: 0 0 8px 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.alert-text p {
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    font-size: 1rem;
+}
+
+.emergency-dial-btn {
+    background: white;
+    color: var(--emergency-red);
+    padding: 18px 40px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1.25rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.emergency-dial-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Container */
+.emergency-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 20px;
+}
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    color:white;
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+.section-header p {
+    font-size: 1.15rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* Services Grid */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 35px;
+    margin-bottom: 60px;
+}
+
+/* Service Card */
+.service-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card-ribbon {
+    position: absolute;
+    top: 20px;
+    right: -35px;
+    background: var(--emergency-red);
+    color: white;
+    padding: 8px 45px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    transform: rotate(45deg);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-ribbon.fire {
+    background: var(--fire-orange);
+}
+
+.card-ribbon.police {
+    background: var(--police-blue);
+}
+
+.service-header {
+    padding: 35px 30px 25px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    border-bottom: 2px solid #f3f4f6;
+}
+
+.service-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.service-icon.emergency {
+    background: linear-gradient(135deg, var(--medical-red), var(--emergency-dark));
+}
+
+.service-icon.fire {
+    background: linear-gradient(135deg, var(--fire-orange), #c2410c);
+}
+
+.service-icon.police {
+    background: linear-gradient(135deg, var(--police-blue), #1d4ed8);
+}
+
+.service-icon.fema {
+    background: linear-gradient(135deg, var(--fema-purple), #6d28d9);
+}
+
+.service-icon.redcross {
+    background: linear-gradient(135deg, var(--redcross-red), var(--emergency-dark));
+}
+
+.service-icon.salvation {
+    background: linear-gradient(135deg, var(--utility-green), #047857);
+}
+
+.service-title h3 {
+    color: #111827;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+}
+
+.availability {
+    display: inline-block;
+    background: #dcfce7;
+    color: #166534;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.service-body {
+    padding: 30px;
+}
+
+.contact-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.contact-row:last-of-type {
+    border-bottom: none;
+}
+
+.contact-row.primary {
+    background: linear-gradient(90deg, rgba(220, 38, 38, 0.05) 0%, transparent 100%);
+    padding: 18px 15px;
+    margin: 0 -15px 15px;
+    border-radius: 10px;
+    border: none;
+}
+
+.contact-label {
+    font-weight: 600;
+    color: #4b5563;
+    font-size: 0.95rem;
+}
+
+.contact-value {
+    color: var(--emergency-red);
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.contact-value:hover {
+    color: var(--emergency-dark);
+    transform: scale(1.05);
+}
+
+.contact-row.primary .contact-value {
+    font-size: 1.4rem;
+}
+
+.service-info {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f9fafb;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.service-info i {
+    color: var(--emergency-red);
+    font-size: 1.1rem;
+    margin-top: 2px;
+}
+
+.service-info span {
+    color: #6b7280;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* Utilities Grid */
+.utilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 60px;
+}
+
+.utility-card {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s;
+}
+
+.utility-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.utility-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.utility-icon.electric {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.utility-icon.gas {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.utility-icon.water {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.utility-icon.telecom {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+.utility-card h4 {
+    color: #111827;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+}
+
+.utility-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.utility-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.utility-contact span {
+    color: #6b7280;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.utility-contact a,
+.utility-contact strong {
+    color: var(--emergency-red);
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+
+.utility-contact a:hover {
+    color: var(--emergency-dark);
+}
+
+/* Regional Container */
+.regional-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.regional-card {
+    background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+    border-radius: 16px;
+    padding: 30px;
+    border: 2px solid #e5e7eb;
+    transition: all 0.3s;
+}
+
+.regional-card:hover {
+    border-color: var(--emergency-red);
+    box-shadow: 0 8px 30px rgba(220, 38, 38, 0.1);
+}
+
+.region-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.region-header i {
+    color: var(--emergency-red);
+    font-size: 1.8rem;
+}
+
+.region-header h3 {
+    color: #111827;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.region-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.region-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background: white;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.region-item:hover {
+    background: #f3f4f6;
+    transform: translateX(5px);
+}
+
+.region-item .state {
+    color: #4b5563;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.region-item a {
+    color: var(--emergency-red);
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.region-item a:hover {
+    color: var(--emergency-dark);
+}
+
+/* Info Cards */
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 80px;
+}
+
+.info-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 35px;
+    border-radius: 16px;
+    color: white;
+    text-align: center;
+}
+
+.info-card i {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.info-card h4 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+}
+
+.info-card p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.7;
+    opacity: 0.95;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .emergency-hero {
+        padding: 80px 20px 60px;
+    }
+
+    .emergency-hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-icon {
+        width: 80px;
+        height: 80px;
+        font-size: 2.5rem;
+    }
+
+    .alert-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .alert-text {
+        min-width: 100%;
+    }
+
+    .emergency-dial-btn {
+        padding: 15px 30px;
+        font-size: 1.1rem;
+    }
+
+    .section-header h2 {
+        font-size: 2rem;
+    }
+
+    .services-grid,
+    .utilities-grid,
+    .regional-container,
+    .info-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .service-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .contact-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .emergency-container {
+        padding: 60px 15px;
+    }
+}

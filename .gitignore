@@ -32,6 +32,10 @@ build/
 ### VS Code ###
 .vscode/
 
+# User-uploaded profile photos (keep folder via .gitkeep)
+src/main/resources/static/img/profile/*
+!src/main/resources/static/img/profile/.gitkeep
+
 # Ignore ONLY News-related Java files
 
 # Controller

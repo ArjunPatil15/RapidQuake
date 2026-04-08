@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{admin/base::Layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trapped users</title>
+</head>
+
+<body>
+<section>
+    <header class="admin-page-header">
+        <h1><i class="fa-solid fa-person-falling me-2"></i>Trapped users</h1>
+        <p class="admin-lead">People who did not tap <strong>“I am safe”</strong> within the 20-second global emergency window, or who were flagged using <strong>last known coordinates</strong>. When someone has been reached by responders, click <strong>Rescued</strong> to remove them from this list.</p>
+    </header>
+
+    <div class="admin-card p-3 p-md-4 mb-4">
+        <div class="row g-3 align-items-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <label for="adminTrappedSearch" class="form-label text-light mb-1">Search trapped user by name</label>
+                <input id="adminTrappedSearch" type="text" class="form-control form-control-admin"
+                       placeholder="Type a name (ex: Arjun)">
+            </div>
+            <div class="col-12 col-md-4 col-lg-3">
+                <div class="admin-search-meta mt-md-4" id="adminTrappedResultCount">0 users</div>
+            </div>
+        </div>
+    </div>
+
+    <p id="trappedActionMsg" class="text-info mb-3" style="min-height: 1.5rem;"></p>
+
+    <div class="admin-table-wrap card admin-card mb-4">
+        <div class="table-responsive">
+            <table class="table table-admin table-striped table-hover align-middle mb-0">
+                <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Latitude</th>
+                    <th scope="col">Longitude</th>
+                    <th scope="col">Accuracy (m)</th>
+                    <th scope="col">Reported at</th>
+                    <th scope="col">Locate</th>
+                    <th scope="col">Profile</th>
+                    <th scope="col" class="text-end">Rescue action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="r : ${reports}" class="admin-trapped-row"
+                    th:attr="data-name=${r.user.fullName != null ? #strings.toLowerCase(r.user.fullName) : ''}">
+                    <td class="fw-semibold" th:text="${r.user.fullName}">—</td>
+                    <td th:text="${r.user.email}">—</td>
+                    <td th:text="${r.user.phone != null ? r.user.phone : '—'}">—</td>
+                    <td th:text="${r.user.city != null && !r.user.city.isEmpty() ? r.user.city : '—'}">—</td>
+                    <td class="cell-mono" th:text="${#numbers.formatDecimal(r.latitude, 1, 6)}">—</td>
+                    <td class="cell-mono" th:text="${#numbers.formatDecimal(r.longitude, 1, 6)}">—</td>
+                    <td th:text="${r.accuracyMeters != null ? #numbers.formatDecimal(r.accuracyMeters, 1, 1) : '—'}">—</td>
+                    <td class="cell-stack">
+                        <span th:text="${r.reportedAt}">—</span>
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-info btn-sm fw-semibold px-3" target="_blank" rel="noopener noreferrer"
+                           th:href="@{|https://www.google.com/maps/dir/?api=1&destination=${r.latitude},${r.longitude}|}">
+                            <i class="fa-solid fa-location-dot me-1"></i>Locate
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-warning btn-sm fw-semibold px-3"
+                           th:href="@{/admin/users(openUserId=${r.user.id})}">
+                            <i class="fa-solid fa-id-card me-1"></i>View details
+                        </a>
+                    </td>
+                    <td class="text-end">
+                        <button type="button" class="btn btn-success btn-sm fw-semibold px-3 btn-rescued-trapped"
+                                th:attr="data-user-id=${r.user.id}">
+                            <i class="fa-solid fa-life-ring me-1"></i>Rescued
+                        </button>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(reports)}">
+                    <td colspan="11" class="text-center py-5 cell-muted fs-5">No trapped reports.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', function () {
+            if (!window.RapidQuakeAdmin) return;
+            var msgEl = document.getElementById('trappedActionMsg');
+            function msg(t, ok) {
+                if (msgEl) {
+                    msgEl.textContent = t || '';
+                    msgEl.className = 'mb-3 ' + (ok === true ? 'text-success' : ok === false ? 'text-danger' : 'text-info');
+                }
+            }
+
+            var searchInput = document.getElementById('adminTrappedSearch');
+            var countEl = document.getElementById('adminTrappedResultCount');
+            var rows = Array.from(document.querySelectorAll('.admin-trapped-row'));
+            function updateCount() {
+                var visible = rows.filter(function (row) { return row.style.display !== 'none'; }).length;
+                if (countEl) countEl.textContent = visible + (visible === 1 ? ' user' : ' users');
+            }
+            function applyFilter() {
+                var q = (searchInput && searchInput.value ? searchInput.value : '').trim().toLowerCase();
+                rows.forEach(function (row) {
+                    var name = row.getAttribute('data-name') || '';
+                    row.style.display = !q || name.indexOf(q) !== -1 ? '' : 'none';
+                });
+                updateCount();
+            }
+            if (searchInput) {
+                searchInput.addEventListener('input', applyFilter);
+            }
+            updateCount();
+
+            document.querySelectorAll('.btn-rescued-trapped').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var userId = btn.getAttribute('data-user-id');
+                    if (!userId) return;
+                    btn.disabled = true;
+                    msg('Updating…', null);
+                    window.RapidQuakeAdmin.postJson('/api/admin/trapped/rescue/' + userId, {})
+                        .then(function (r) {
+                            if (r.ok) {
+                                msg('Removed from trapped list.', true);
+                                setTimeout(function () { location.reload(); }, 400);
+                                return;
+                            }
+                            return r.json().then(function (j) {
+                                msg((j && j.error) ? j.error : 'Could not update.', false);
+                                btn.disabled = false;
+                            }).catch(function () {
+                                msg('Could not update.', false);
+                                btn.disabled = false;
+                            });
+                        })
+                        .catch(function () {
+                            msg('Network error.', false);
+                            btn.disabled = false;
+                        });
+                });
+            });
+        });
+    </script>
+</section>
+</body>
+</html>

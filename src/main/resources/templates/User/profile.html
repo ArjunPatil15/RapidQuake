@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::Layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My profile - RapidQuake</title>
+</head>
+
+<body>
+<section class="rq-profile-page container-xl px-3 px-md-4">
+    <link rel="stylesheet" th:href="@{/css/User/profile-page.css}">
+    <link rel="stylesheet" th:href="@{/css/User/family.css}">
+
+    <div th:if="${message}" class="alert rq-alert-rq alert-success" role="alert" th:text="${message}"></div>
+    <div class="alert rq-alert-rq alert-info" role="alert">
+        <i class="fa-solid fa-shield-halved me-2"></i>
+        Privacy mode is active: admin cannot view your live location unless you are marked as trapped.
+    </div>
+
+    <div class="rq-profile-hero">
+        <div class="rq-profile-hero-inner">
+            <div class="rq-profile-avatar-wrap">
+                <img th:if="${user.profilePhotoPath != null}" th:src="${user.profilePhotoPath}" alt=""
+                     class="rq-profile-avatar">
+                <div th:unless="${user.profilePhotoPath != null}"
+                     class="rq-profile-avatar rq-profile-avatar-placeholder"
+                     th:text="${user.fullName != null && !user.fullName.isEmpty() ? #strings.toUpperCase(#strings.substring(user.fullName, 0, 1)) : '?'}">U</div>
+            </div>
+            <div class="rq-profile-hero-text flex-grow-1">
+                <h1 th:text="${user.fullName}">Your name</h1>
+                <p class="rq-profile-email mb-0" th:text="${user.email}">email</p>
+                <div class="rq-profile-hero-actions">
+                    <a th:href="@{/profile/edit}" class="btn btn-warning btn-lg fw-bold px-4">
+                        <i class="fa-solid fa-pen me-2"></i>Edit profile
+                    </a>
+                    <a th:href="@{/map}" class="btn btn-outline-light btn-lg px-4">
+                        <i class="fa-solid fa-map me-2"></i>Live map
+                    </a>
+                    <a href="/" class="btn btn-outline-secondary btn-lg px-4">
+                        <i class="fa-solid fa-house me-2"></i>Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="rq-profile-body">
+        <div class="rq-profile-main">
+            <div class="rq-glass-card">
+                <h2><i class="fa-solid fa-id-card me-2"></i>Account details</h2>
+                <div class="rq-detail-row">
+                    <div class="rq-detail-label">City</div>
+                    <div class="rq-detail-value" th:text="${user.city != null && !user.city.isEmpty() ? user.city : '—'}">—</div>
+                </div>
+                <div class="rq-detail-row">
+                    <div class="rq-detail-label">Phone</div>
+                    <div class="rq-detail-value" th:text="${user.phone != null ? user.phone : '—'}">—</div>
+                </div>
+                <div class="rq-detail-row">
+                    <div class="rq-detail-label">Last location</div>
+                    <div class="rq-detail-value">
+                        <span th:if="${user.lastLatitude != null && user.lastLongitude != null}"
+                              th:text="|${#numbers.formatDecimal(user.lastLatitude, 1, 5)}, ${#numbers.formatDecimal(user.lastLongitude, 1, 5)}|">0, 0</span>
+                        <span th:unless="${user.lastLatitude != null && user.lastLongitude != null}">Not set yet — open the live map or allow location when prompted.</span>
+                        <span th:if="${user.locationSourceNote != null}" class="rq-detail-note" th:text="${user.locationSourceNote}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <aside class="rq-profile-side">
+            <div class="rq-glass-card">
+                <h3><i class="fa-solid fa-circle-info me-2"></i>Quick tips</h3>
+                <p class="mb-0">Keep your city and phone current so emergency flows can reach you. Your map uses saved GPS or network location while you are signed in.</p>
+            </div>
+        </aside>
+    </div>
+
+    <div class="rq-family-section rq-glass-card mt-4">
+        <h2><i class="fa-solid fa-people-roof me-2"></i>Family safety network</h2>
+        <p class="rq-family-lead">Family requests, trapped-member location, and rescue confirmations are now available on the dedicated Family page.</p>
+        <a class="btn btn-warning" th:href="@{/family}">
+            <i class="fa-solid fa-people-roof me-2"></i>Open Family section
+        </a>
+    </div>
+</section>
+</body>
+</html>

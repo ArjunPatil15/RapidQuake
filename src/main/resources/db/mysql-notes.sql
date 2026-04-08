@@ -1,0 +1,52 @@
+-- RapidQuake — optional manual MySQL checks (tables are created by JPA ddl-auto=update)
+-- Prefer creating demo users from Admin → Demo placements (passwords are BCrypt-hashed in the app).
+
+-- List app users and last known coordinates:
+-- SELECT id, email, full_name, city, last_latitude, last_longitude, location_source_note FROM app_users WHERE role = 'USER';
+
+-- Example: never insert plain-text passwords — use the admin UI "Demo placements" or register via the app.
+
+-- ---------------------------------------------------------------------------
+-- Family relation table (manual patch for existing databases if required)
+-- ---------------------------------------------------------------------------
+-- USE rapidquake;
+-- CREATE TABLE IF NOT EXISTS family_relations (
+--   id BIGINT NOT NULL AUTO_INCREMENT,
+--   requester_id BIGINT NOT NULL,
+--   target_id BIGINT NOT NULL,
+--   status VARCHAR(20) NOT NULL DEFAULT 'PENDING',
+--   created_at DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+--   accepted_at DATETIME(6) NULL,
+--   PRIMARY KEY (id),
+--   CONSTRAINT fk_family_rel_requester FOREIGN KEY (requester_id) REFERENCES app_users(id) ON DELETE CASCADE,
+--   CONSTRAINT fk_family_rel_target FOREIGN KEY (target_id) REFERENCES app_users(id) ON DELETE CASCADE,
+--   CONSTRAINT chk_family_rel_status CHECK (status IN ('PENDING', 'ACCEPTED')),
+--   CONSTRAINT chk_family_rel_not_self CHECK (requester_id <> target_id),
+--   CONSTRAINT uk_family_rel_pair UNIQUE (requester_id, target_id)
+-- );
+-- CREATE INDEX idx_family_rel_requester_status ON family_relations (requester_id, status);
+-- CREATE INDEX idx_family_rel_target_status ON family_relations (target_id, status);
+
+-- ---------------------------------------------------------------------------
+-- Direct DB user deletion support (fix FK block on app_users delete)
+-- Run once after tables are created.
+-- ---------------------------------------------------------------------------
+-- USE rapidquake;
+--
+-- DROP TRIGGER IF EXISTS trg_app_users_before_delete;
+-- DELIMITER $$
+-- CREATE TRIGGER trg_app_users_before_delete
+-- BEFORE DELETE ON app_users
+-- FOR EACH ROW
+-- BEGIN
+--   DELETE FROM trapped_reports
+--   WHERE user_id = OLD.id;
+--
+--   DELETE FROM family_relations
+--   WHERE requester_id = OLD.id
+--      OR target_id = OLD.id;
+-- END$$
+-- DELIMITER ;
+--
+-- Example direct delete (now works cleanly):
+-- DELETE FROM app_users WHERE id = 123;

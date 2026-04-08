@@ -1,35 +1,6 @@
-// RapidQuake JavaScript - Minimal JS for Thymeleaf-based project
-
-// DOM Content Loaded - Only essential functionality
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // Rotating text animation for hero title (only on home page)
-    const rotatingText = document.getElementById('rotating-text');
-    
-    if (rotatingText) {
-        const phrases = [
-            'Stay Alert',
-            'Stay Prepared', 
-            'Stay Safe',
-            'Stay Informed'
-        ];
-        
-        let currentIndex = 0;
-        
-        function rotateText() {
-            rotatingText.classList.add('fade-out');
-            
-            setTimeout(() => {
-                currentIndex = (currentIndex + 1) % phrases.length;
-                rotatingText.textContent = phrases[currentIndex];
-                rotatingText.classList.remove('fade-out');
-            }, 250);
-        }
-        
-        setTimeout(() => {
-            setInterval(rotateText, 2500);
-        }, 2000);
-    }
+// RapidQuake — global shell (navbar scroll, etc.). Page-specific scripts live under /js/pages/
+document.addEventListener('DOMContentLoaded', function () {
+    /* home hero rotation: /js/pages/index.js */
 });
 
 // Header scroll effects - minimal

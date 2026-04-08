@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::Layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create account - RapidQuake</title>
+</head>
+
+<body>
+<section class="container-fluid p-0">
+    <link rel="stylesheet" th:href="@{/css/User/auth.css}">
+
+    <div class="admin-login-section d-flex align-items-center justify-content-center min-vh-100 py-5" style="padding-top: 120px;">
+        <div class="admin-login-overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card admin-login-card border-0 shadow-lg">
+                        <div class="card-body p-5">
+                            <div class="text-center mb-4">
+                                <div class="admin-login-icon mb-3">
+                                    <i class="fas fa-user-circle fa-3x" style="color: #ffc107;"></i>
+                                </div>
+                                <h2 class="fw-bold text-dark mb-2">Create account</h2>
+                                <p class="text-muted">Register to access the live map and alerts. Location is stored only while you are signed in.</p>
+                            </div>
+
+                            <div th:if="${error}" class="alert alert-danger mb-3" role="alert" th:text="${error}"></div>
+
+                            <form id="registerForm" th:action="@{/register}" method="post" enctype="multipart/form-data"
+                                  class="needs-validation" novalidate>
+                                <div class="mb-3">
+                                    <label for="fullName" class="form-label text-dark"><i class="fas fa-user me-2"></i>Full name</label>
+                                    <input type="text" class="form-control form-control-admin" id="fullName" name="fullName"
+                                           placeholder="Your name" required minlength="2">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label text-dark"><i class="fas fa-envelope me-2"></i>Email</label>
+                                    <input type="email" class="form-control form-control-admin" id="email" name="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="city" class="form-label text-dark"><i class="fas fa-city me-2"></i>City</label>
+                                    <input type="text" class="form-control form-control-admin" id="city" name="city"
+                                           placeholder="City or region" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label text-dark"><i class="fas fa-phone me-2"></i>Phone (optional)</label>
+                                    <input type="text" class="form-control form-control-admin" id="phone" name="phone"
+                                           placeholder="For emergency contact">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label text-dark"><i class="fas fa-lock me-2"></i>Password</label>
+                                    <input type="password" class="form-control form-control-admin" id="password" name="password"
+                                           required minlength="8" autocomplete="new-password">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="confirmPassword" class="form-label text-dark"><i class="fas fa-lock me-2"></i>Confirm password</label>
+                                    <input type="password" class="form-control form-control-admin" id="confirmPassword"
+                                           name="confirmPassword" required minlength="8" autocomplete="new-password">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="photo" class="form-label text-dark"><i class="fas fa-image me-2"></i>Profile photo (optional)</label>
+                                    <input type="file" class="form-control form-control-admin" id="photo" name="photo" accept="image/*">
+                                </div>
+                                <input type="hidden" name="regLatitude" id="regLatitude">
+                                <input type="hidden" name="regLongitude" id="regLongitude">
+                                <input type="hidden" name="regAccuracy" id="regAccuracy">
+
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="termsAccepted" required>
+                                        <label class="form-check-label text-dark" for="termsAccepted">
+                                            I agree to the <a href="/terms" class="text-warning text-decoration-none" target="_blank">Terms</a>
+                                            and <a href="/privacy" class="text-warning text-decoration-none" target="_blank">Privacy</a>.
+                                        </label>
+                                    </div>
+                                    <p class="small text-muted mt-2 mb-0">If you deny GPS, we still store an approximate location from your network (IP) so responders can find you.</p>
+                                </div>
+
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                                <button type="submit" class="btn btn-dark btn-lg w-100 mb-3 fw-bold"
+                                        style="background: linear-gradient(135deg, #ffc107, #ff8c00) !important; border: none;">
+                                    <i class="fas fa-user-plus me-2"></i>Register
+                                </button>
+                                <div class="text-center">
+                                    <span class="text-muted">Already have an account? </span>
+                                    <a th:href="@{/login}" class="text-warning text-decoration-none fw-bold">Sign in</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            var form = document.getElementById('registerForm');
+            if (!form) return;
+            form.addEventListener('submit', function (e) {
+                if (!form.checkValidity()) {
+                    return;
+                }
+                e.preventDefault();
+                if (!navigator.geolocation) {
+                    form.submit();
+                    return;
+                }
+                navigator.geolocation.getCurrentPosition(
+                    function (pos) {
+                        document.getElementById('regLatitude').value = pos.coords.latitude;
+                        document.getElementById('regLongitude').value = pos.coords.longitude;
+                        document.getElementById('regAccuracy').value = pos.coords.accuracy;
+                        form.submit();
+                    },
+                    function () {
+                        form.submit();
+                    },
+                    { enableHighAccuracy: true, timeout: 12000, maximumAge: 0 }
+                );
+            });
+        })();
+    </script>
+</section>
+</body>
+</html>

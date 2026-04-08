@@ -1,0 +1,287 @@
+/* User profile & edit — matches RapidQuake public dark theme */
+@import url("/css/theme.css");
+
+.rq-profile-page {
+    min-height: calc(100vh - 120px);
+    padding-top: 5.5rem;
+    padding-bottom: 4rem;
+    font-family: var(--rq-font);
+}
+
+.rq-profile-hero {
+    position: relative;
+    border-radius: var(--rq-radius);
+    padding: 2.5rem 2rem;
+    margin-bottom: 2rem;
+    background:
+        linear-gradient(135deg, rgba(29, 78, 216, 0.2) 0%, rgba(15, 23, 42, 0.92) 50%, rgba(124, 58, 237, 0.15) 100%),
+        rgba(15, 23, 42, 0.75);
+    border: 1px solid var(--rq-border);
+    box-shadow: var(--rq-shadow);
+    overflow: hidden;
+}
+
+.rq-profile-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 20% 20%, rgba(56, 189, 248, 0.12), transparent 55%);
+    pointer-events: none;
+}
+
+.rq-profile-hero-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+}
+
+.rq-profile-avatar-wrap {
+    flex-shrink: 0;
+}
+
+.rq-profile-avatar {
+    width: 132px;
+    height: 132px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(251, 191, 36, 0.85);
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15), 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+.rq-profile-avatar.rq-profile-avatar-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, #6366f1, #8b5cf6);
+    color: #fff;
+    font-size: 3rem;
+    font-weight: 700;
+    border: 4px solid rgba(251, 191, 36, 0.85);
+}
+
+.rq-profile-hero-text h1 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: #f8fafc;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.35rem;
+}
+
+.rq-profile-hero-text .rq-profile-email {
+    font-size: 1.1rem;
+    color: var(--rq-muted);
+    margin-bottom: 0;
+}
+
+.rq-profile-hero-actions {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.rq-profile-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 992px) {
+    .rq-profile-body {
+        grid-template-columns: 1fr 380px;
+        align-items: start;
+    }
+}
+
+.rq-glass-card {
+    background: var(--rq-bg-glass);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--rq-border);
+    border-radius: var(--rq-radius);
+    padding: 1.75rem 2rem;
+    box-shadow: var(--rq-glow);
+}
+
+.rq-glass-card h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--rq-warm);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--rq-border-warm);
+}
+
+.rq-detail-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 1rem 1.5rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+    font-size: 1.05rem;
+}
+
+.rq-detail-row:last-child {
+    border-bottom: none;
+}
+
+.rq-detail-label {
+    color: var(--rq-muted);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.rq-detail-value {
+    color: var(--rq-text);
+    font-weight: 500;
+    word-break: break-word;
+}
+
+.rq-detail-note {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--rq-muted);
+    font-weight: 400;
+    margin-top: 0.35rem;
+}
+
+.rq-profile-side .rq-glass-card {
+    padding: 1.5rem;
+}
+
+.rq-profile-side h3 {
+    font-size: 1rem;
+    color: var(--rq-accent);
+    margin-bottom: 0.75rem;
+}
+
+.rq-profile-side p {
+    color: var(--rq-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Edit profile form (dark) */
+.rq-profile-edit .rq-glass-card {
+    max-width: 720px;
+}
+
+.rq-profile-edit-card {
+    margin-inline: auto;
+}
+
+.rq-form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0 1rem;
+}
+
+@media (min-width: 768px) {
+    .rq-form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.rq-profile-edit .form-label {
+    color: #cbd5e1;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+}
+
+.rq-profile-edit .form-control,
+.rq-profile-edit .form-control:focus {
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    color: #f1f5f9;
+    border-radius: var(--rq-radius-sm);
+    padding: 0.65rem 1rem;
+    font-size: 1rem;
+}
+
+.rq-profile-edit .form-control:focus {
+    border-color: var(--rq-accent);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+}
+
+.rq-profile-edit .form-control:disabled {
+    opacity: 0.65;
+}
+
+.rq-profile-edit .form-check-label {
+    color: #cbd5e1;
+}
+
+.rq-profile-edit h1 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: #f8fafc;
+}
+
+.rq-profile-edit .rq-muted-block {
+    color: var(--rq-muted);
+    font-size: 1rem;
+    line-height: 1.55;
+}
+
+.rq-profile-edit .btn {
+    min-height: 44px;
+}
+
+.rq-alert-rq {
+    border-radius: var(--rq-radius-sm);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    background: rgba(15, 23, 42, 0.9);
+    color: #e2e8f0;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.rq-alert-rq.alert-success {
+    border-color: rgba(34, 197, 94, 0.45);
+    background: rgba(20, 83, 45, 0.25);
+    color: #bbf7d0;
+}
+
+.rq-alert-rq.alert-danger {
+    border-color: rgba(248, 113, 113, 0.45);
+    background: rgba(127, 29, 29, 0.25);
+    color: #fecaca;
+}
+
+/* Edit form section titles (override generic .rq-glass-card h2) */
+.rq-profile-edit .rq-glass-card > h2 {
+    border-bottom: none;
+    text-transform: none;
+    letter-spacing: normal;
+    padding-bottom: 0;
+    font-size: 1.15rem;
+    color: var(--rq-warm);
+}
+
+@media (max-width: 767.98px) {
+    .rq-profile-page {
+        padding-top: 5rem;
+        padding-bottom: 2.5rem;
+    }
+
+    .rq-profile-hero {
+        padding: 1.5rem 1.1rem;
+    }
+
+    .rq-glass-card {
+        padding: 1.1rem;
+    }
+
+    .rq-profile-edit .d-flex.gap-3 {
+        flex-direction: column;
+    }
+
+    .rq-profile-edit .d-flex.gap-3 .btn {
+        width: 100%;
+    }
+}

@@ -1,0 +1,63 @@
+/* Home — RapidQuake (uses global theme + style.css) */
+.rq-hero-brand {
+    letter-spacing: 0.02em;
+    background: linear-gradient(135deg, var(--rq-text) 0%, var(--rq-accent) 55%, var(--rq-warm) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero-title .title-dynamic {
+    transition: opacity 0.35s ease;
+}
+
+.hero-title .title-dynamic.fade-out {
+    opacity: 0;
+}
+
+.hero-buttons .btn-primary {
+    background: linear-gradient(135deg, var(--rq-accent-strong), var(--rq-accent)) !important;
+    border: none !important;
+    box-shadow: var(--rq-glow);
+}
+
+.hero-buttons .btn-outline-light {
+    border-color: var(--rq-border) !important;
+    backdrop-filter: blur(8px);
+}
+
+.feature-card {
+    border-radius: var(--rq-radius) !important;
+    background: var(--rq-bg-glass) !important;
+    border: 1px solid var(--rq-border) !important;
+    box-shadow: var(--rq-shadow);
+}
+
+.data-card {
+    border-radius: var(--rq-radius) !important;
+    background: rgba(15, 23, 42, 0.72) !important;
+    border: 1px solid rgba(148, 163, 184, 0.28) !important;
+    box-shadow: var(--rq-shadow);
+}
+
+@media (max-width: 991.98px) {
+    .hero-section {
+        min-height: 78vh;
+        padding-top: 5.5rem;
+        padding-bottom: 2rem;
+    }
+
+    .hero-title {
+        font-size: clamp(2rem, 8vw, 3rem) !important;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        padding-inline: 0.75rem;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        margin-right: 0 !important;
+    }
+}

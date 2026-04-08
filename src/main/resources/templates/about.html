@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::Layout(~{::section})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      th:replace="~{base::Layout(~{::section})}">
 
 <head>
     <meta charset="UTF-8">
@@ -9,7 +11,7 @@
 
 <body>
     <section>
-        <link rel="stylesheet" th:href="@{/css/about.css}">
+        <link rel="stylesheet" th:href="@{/css/pages/about.css}">
         
         <!-- Hero Section -->
         <div class="about-hero">
@@ -294,7 +296,11 @@
                             <p class="cta-text">Join thousands of users who trust RapidQuake for real-time seismic intelligence and proactive safety alerts.</p>
                         </div>
                         <div class="col-lg-4 text-lg-end">
-                            <a href="/login" class="btn-cta">
+                            <a sec:authorize="isAuthenticated()" href="/map" class="btn-cta">
+                                Open Live Map
+                                <i class="fa-solid fa-arrow-right ms-2"></i>
+                            </a>
+                            <a sec:authorize="isAnonymous()" href="/login" class="btn-cta">
                                 Get Started Now
                                 <i class="fa-solid fa-arrow-right ms-2"></i>
                             </a>

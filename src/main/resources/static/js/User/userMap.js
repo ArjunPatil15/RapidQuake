@@ -6,6 +6,9 @@ let userMarker = null;
 let userLocation = null;
 let accuracyCircle = null;
 let earthquakeCircles = [];
+let earthquakeZones = [];
+const zoneAlerted = new Set();
+let locationWatcherId = null;
 
 // Initialize map
 function initMap() {
@@ -26,15 +29,20 @@ function initMap() {
 
     try {
         map = L.map('map', {
-            zoomControl: true,
+            zoomControl: false,
             maxZoom: 19,
             minZoom: 2,
             worldCopyJump: true,
             maxBounds: [[-90, -180], [90, 180]],
-            maxBoundsViscosity: 1.0
+            maxBoundsViscosity: 1.0,
+            scrollWheelZoom: true,
+            touchZoom: true,
+            doubleClickZoom: true,
+            dragging: true
         }).setView([20, 0], 2);
 
         console.log('Map object created');
+        L.control.zoom({ position: 'topright' }).addTo(map);
 
         // Satellite imagery layer
         L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
@@ -95,6 +103,37 @@ function getImpactDescription(mag) {
     return 'Minor earthquake. Generally not felt.';
 }
 
+function toRadians(value) {
+    return value * (Math.PI / 180);
+}
+
+function distanceMeters(aLat, aLon, bLat, bLon) {
+    const R = 6371000;
+    const dLat = toRadians(bLat - aLat);
+    const dLon = toRadians(bLon - aLon);
+    const q1 = Math.sin(dLat / 2) * Math.sin(dLat / 2);
+    const q2 = Math.cos(toRadians(aLat)) * Math.cos(toRadians(bLat));
+    const q3 = Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(q1 + q2 * q3), Math.sqrt(1 - (q1 + q2 * q3)));
+    return R * c;
+}
+
+function checkAndTriggerImpactAlerts() {
+    if (!userLocation || !earthquakeZones.length) {
+        return;
+    }
+    earthquakeZones.forEach((zone) => {
+        const d = distanceMeters(userLocation.lat, userLocation.lon, zone.lat, zone.lon);
+        if (d > zone.radiusMeters || zoneAlerted.has(zone.key)) {
+            return;
+        }
+        zoneAlerted.add(zone.key);
+        if (window.RapidQuakeEmergency && typeof window.RapidQuakeEmergency.triggerFromMap === 'function') {
+            window.RapidQuakeEmergency.triggerFromMap(zone.key);
+        }
+    });
+}
+
 function addUserMarker(lat, lon, accuracy) {
     console.log('Adding user marker at:', lat, lon);
     
@@ -149,11 +188,12 @@ function addUserMarker(lat, lon, accuracy) {
         maxWidth: 350
     });
 
+    const safeAccuracy = Number.isFinite(Number(accuracy)) ? Number(accuracy) : 120;
     accuracyCircle = L.circle([lat, lon], {
         color: '#2196F3',
         fillColor: '#2196F3',
         fillOpacity: 0.15,
-        radius: accuracy,
+        radius: safeAccuracy,
         weight: 2,
         dashArray: '10, 5',
         opacity: 0.6
@@ -161,10 +201,27 @@ function addUserMarker(lat, lon, accuracy) {
 
     console.log('Accuracy circle added');
     map.setView([lat, lon], 13);
+    checkAndTriggerImpactAlerts();
 
     setTimeout(() => {
         if (userMarker) userMarker.openPopup();
     }, 500);
+}
+
+function postLocationToServer(lat, lon, accuracy) {
+    const token = document.querySelector('meta[name="_csrf"]');
+    const header = document.querySelector('meta[name="_csrf_header"]');
+    const csrf = token && header ? { [header.content]: token.content } : {};
+    return fetch('/api/user/location', {
+        method: 'POST',
+        headers: Object.assign({ 'Content-Type': 'application/json' }, csrf),
+        credentials: 'same-origin',
+        body: JSON.stringify({
+            latitude: Number(lat),
+            longitude: Number(lon),
+            accuracyMeters: Number.isFinite(Number(accuracy)) ? Number(accuracy) : null
+        })
+    }).catch(() => null);
 }
 
 function manualLocation() {
@@ -201,13 +258,39 @@ function manualLocation() {
     
     console.log('Valid coordinates entered:', latitude, longitude);
     addUserMarker(latitude, longitude, 100);
+    postLocationToServer(latitude, longitude, 100);
     
     const statusEl = document.getElementById('user-location-status');
     if (statusEl) {
         statusEl.innerHTML = `📍 ${latitude.toFixed(4)}, ${longitude.toFixed(4)} (Manual)`;
     }
     
-    alert(`✅ Location set successfully!\n\nLatitude: ${latitude.toFixed(6)}°\nLongitude: ${longitude.toFixed(6)}°`);
+    const st = document.getElementById('user-location-status');
+    if (st) {
+        st.innerHTML = `📍 Manual · ${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
+    }
+}
+
+async function loadSavedOrServerLocation() {
+    try {
+        const r = await fetch('/api/user/location-hint', { credentials: 'same-origin' });
+        if (r.status === 204 || !r.ok) {
+            return;
+        }
+        const j = await r.json();
+        if (j.latitude == null || j.longitude == null || !map) {
+            return;
+        }
+        const acc = j.accuracyMeters != null ? Number(j.accuracyMeters) : 5000;
+        addUserMarker(Number(j.latitude), Number(j.longitude), acc);
+        const statusEl = document.getElementById('user-location-status');
+        if (statusEl) {
+            const src = j.source === 'saved' ? 'Saved profile location' : (j.source === 'ip' ? 'Approximate (network)' : 'Location');
+            statusEl.innerHTML = `📍 ${src} · ${Number(j.latitude).toFixed(4)}, ${Number(j.longitude).toFixed(4)}`;
+        }
+    } catch (e) {
+        console.warn('loadSavedOrServerLocation:', e);
+    }
 }
 
 function retryLocation() {
@@ -228,7 +311,51 @@ function goToUserLocation() {
             if (userMarker) userMarker.openPopup();
         }, 1600);
     } else {
-        alert('📍 Location not available!\n\nPlease:\n1. Allow location access, or\n2. Click the orange button to enter your location manually');
+        const st = document.getElementById('user-location-status');
+        if (st) {
+            st.innerHTML = '📍 Set location manually (edit button) or retry GPS';
+        }
+    }
+}
+
+function zoomInMap() {
+    if (!map) {
+        return;
+    }
+    map.zoomIn();
+}
+
+function zoomOutMap() {
+    if (!map) {
+        return;
+    }
+    map.zoomOut();
+}
+
+async function fallbackServerLocationHint(statusEl) {
+    try {
+        const r = await fetch('/api/user/location-hint', { credentials: 'same-origin' });
+        if (r.status === 204 || !r.ok) {
+            if (statusEl) {
+                statusEl.innerHTML = '📍 Use manual location (pencil) or allow GPS';
+            }
+            return;
+        }
+        const j = await r.json();
+        const lat = j.latitude;
+        const lon = j.longitude;
+        const acc = j.accuracyMeters != null ? j.accuracyMeters : 5000;
+        if (lat == null || lon == null) {
+            return;
+        }
+        addUserMarker(Number(lat), Number(lon), Number(acc));
+        if (statusEl) {
+            statusEl.innerHTML = '📡 Approximate network location shown. Allow GPS for precise live tracking.';
+        }
+    } catch (e) {
+        if (statusEl) {
+            statusEl.innerHTML = '📍 Use manual location (pencil) or allow GPS';
+        }
     }
 }
 
@@ -240,9 +367,9 @@ function getUserLocation() {
     if (!("geolocation" in navigator)) {
         console.error('Geolocation not supported');
         if (statusEl) {
-            statusEl.innerHTML = '❌ Not supported';
+            statusEl.innerHTML = '📡 No GPS in browser — using network…';
         }
-        alert('⚠️ Geolocation not supported by your browser.\n\nClick the orange button to enter your location manually.');
+        fallbackServerLocationHint(statusEl);
         return;
     }
 
@@ -269,6 +396,7 @@ function getUserLocation() {
             console.log(`Lat: ${lat}, Lon: ${lon}, Accuracy: ${accuracy}m`);
 
             addUserMarker(lat, lon, accuracy);
+            postLocationToServer(lat, lon, accuracy);
             
             if (statusEl) {
                 statusEl.innerHTML = `📍 ${lat.toFixed(4)}, ${lon.toFixed(4)}`;
@@ -278,33 +406,39 @@ function getUserLocation() {
         },
         (error) => {
             console.error('❌ Geolocation error:', error);
-            
-            let errorMsg = '❌ Location failed';
-            let detailMsg = '';
-            
-            if (error.code === 1) { // PERMISSION_DENIED
-                errorMsg = '🚫 Permission denied';
-                detailMsg = 'Location access was denied.\n\nTo fix this:\n1. Click the 🔒 icon in your address bar\n2. Allow location access\n3. Click the green retry button\n\nOR click the orange button to enter your location manually.';
-            } else if (error.code === 2) { // POSITION_UNAVAILABLE
-                errorMsg = '📡 Signal unavailable';
-                detailMsg = 'GPS signal not available.\n\nTry:\n1. Moving near a window\n2. Enabling location services\n3. Using the orange button to enter location manually';
-            } else if (error.code === 3) { // TIMEOUT
-                errorMsg = '⏱️ Timeout';
-                detailMsg = 'Location request timed out.\n\nTry:\n1. Click the green retry button\n2. Use the orange button to enter location manually';
+            let short = 'GPS unavailable';
+            if (error.code === 1) {
+                short = 'Location blocked — using network…';
+            } else if (error.code === 2) {
+                short = 'GPS unavailable — using network…';
+            } else if (error.code === 3) {
+                short = 'GPS timed out — using network…';
             }
-            
             if (statusEl) {
-                statusEl.innerHTML = errorMsg;
+                statusEl.innerHTML = short;
             }
-            
-            console.log('Showing error alert...');
-            setTimeout(() => {
-                if (detailMsg) {
-                    alert(errorMsg + '\n\n' + detailMsg);
-                }
-            }, 100);
+            fallbackServerLocationHint(statusEl);
         },
         options
+    );
+
+    if (locationWatcherId != null) {
+        navigator.geolocation.clearWatch(locationWatcherId);
+        locationWatcherId = null;
+    }
+    locationWatcherId = navigator.geolocation.watchPosition(
+        (position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const accuracy = position.coords.accuracy;
+            addUserMarker(lat, lon, accuracy);
+            postLocationToServer(lat, lon, accuracy);
+            if (statusEl) {
+                statusEl.innerHTML = `📍 Live GPS · ${lat.toFixed(4)}, ${lon.toFixed(4)}`;
+            }
+        },
+        () => { /* keep current marker/fallback */ },
+        { enableHighAccuracy: true, timeout: 20000, maximumAge: 10000 }
     );
 }
 
@@ -368,6 +502,7 @@ function displayEarthquakes(data) {
         }
     });
     earthquakeCircles = [];
+    earthquakeZones = [];
 
     console.log('Adding', data.features.length, 'earthquake markers...');
 
@@ -424,12 +559,19 @@ function displayEarthquakes(data) {
             });
 
             earthquakeCircles.push(circle);
+            earthquakeZones.push({
+                key: String(earthquake.id || (earthquake.properties.time + '-' + index)),
+                lat: coords[1],
+                lon: coords[0],
+                radiusMeters: getRadiusByMagnitude(mag)
+            });
         } catch (e) {
             console.error('Error adding earthquake marker:', e);
         }
     });
 
     console.log('✅ Added', earthquakeCircles.length, 'earthquake markers');
+    checkAndTriggerImpactAlerts();
 }
 
 async function initialize() {
@@ -448,7 +590,9 @@ async function initialize() {
     
     // Wait for map to settle
     await new Promise(resolve => setTimeout(resolve, 800));
-    
+
+    await loadSavedOrServerLocation();
+
     console.log('Map ready, requesting location...');
     getUserLocation();
     

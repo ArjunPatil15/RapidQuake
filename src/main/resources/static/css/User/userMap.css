@@ -1,7 +1,10 @@
-/* userMap.css - Fixed Version */
+@import url("/css/theme.css");
 
-/* Reset section styling to prevent conflicts */
-section {
+/* Live map page */
+
+/* Reset map section styling only (avoid global layout breakage) */
+.map-page-wrapper,
+.map-page-wrapper section {
     margin: 0 !important;
     padding: 0 !important;
     width: 100% !important;
@@ -11,7 +14,7 @@ section {
 /* Wrapper to prevent scrolling issues */
 .map-page-wrapper {
     position: fixed;
-    top: 60px; /* Height of navbar */
+    top: 92px; /* Fixed navbar safe offset */
     left: 0;
     right: 0;
     bottom: 0;
@@ -108,6 +111,29 @@ section {
 
 .leaflet-control-container {
     position: absolute !important;
+}
+
+.leaflet-top {
+    top: 86px;
+}
+
+.leaflet-right {
+    right: 14px;
+}
+
+.leaflet-control-zoom {
+    border: 2px solid #667eea !important;
+    border-radius: 10px !important;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.leaflet-control-zoom a {
+    width: 36px !important;
+    height: 36px !important;
+    line-height: 34px !important;
+    background: #fff !important;
+    color: #334155 !important;
 }
 
 /* Loading Overlay */
@@ -208,6 +234,16 @@ section {
 .manual-btn:hover {
     background: #ff9800;
     color: white;
+}
+
+.zoom-btn {
+    color: #334155;
+    border-color: #334155;
+}
+
+.zoom-btn:hover {
+    background: #334155;
+    color: #fff;
 }
 
 /* Legend - Fixed positioning */
@@ -340,7 +376,7 @@ section {
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .map-page-wrapper {
-        top: 56px;
+        top: 82px;
     }
 
     .info-bar {
@@ -364,6 +400,10 @@ section {
         top: 110px;
         right: 12px;
         gap: 8px;
+    }
+
+    .leaflet-top {
+        top: 72px;
     }
 
     .control-btn {
@@ -440,6 +480,12 @@ section {
 
     .controls {
         right: 8px;
+    }
+
+    .leaflet-control-zoom a {
+        width: 32px !important;
+        height: 32px !important;
+        line-height: 30px !important;
     }
 }
 

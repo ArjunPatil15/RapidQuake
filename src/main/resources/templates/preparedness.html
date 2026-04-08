@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::Layout(~{::section})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      th:replace="~{base::Layout(~{::section})}">
 
 <head>
     <meta charset="UTF-8">
@@ -9,7 +11,7 @@
 
 <body>
     <section>
-        <link rel="stylesheet" th:href="@{/css/preparedness.css}">
+        <link rel="stylesheet" th:href="@{/css/pages/preparedness.css}">
         
         <!-- Hero Section -->
         <div class="prep-hero">
@@ -39,6 +41,8 @@
         </div>
 
         <div class="prep-container">
+            <div sec:authorize="isAuthenticated()" id="rqPreparednessUserKey"
+                 sec:authentication="name" style="display:none;"></div>
             <!-- Progress Tracker -->
             <div class="progress-tracker">
                 <h3><i class="fa-solid fa-list-check"></i> Your Preparedness Progress</h3>
@@ -609,7 +613,7 @@
             </div>
         </div>
 
-        <script th:src="@{/js/preparedness.js}"></script>
+        <script th:src="@{/js/pages/preparedness.js}"></script>
     </section>
 </body>
 

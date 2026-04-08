@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::Layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Safety Network - RapidQuake</title>
+</head>
+
+<body>
+<section class="container-xl px-3 px-md-4 rq-family-page">
+    <link rel="stylesheet" th:href="@{/css/User/family.css}">
+
+    <header class="rq-family-header mt-4">
+        <h1><i class="fa-solid fa-people-roof me-2"></i>Family Safety Network</h1>
+        <p>Add family by account email. If someone cannot click "I am safe", connected family members can see their status and location here.</p>
+        <p class="mb-0"><i class="fa-solid fa-shield-halved me-2"></i>Privacy mode: family and admin can view location only when a member is marked as trapped.</p>
+    </header>
+
+    <div class="rq-family-section rq-glass-card">
+        <div class="rq-family-invite">
+            <h2>Connect a family member</h2>
+            <p class="rq-family-lead">Send a request by account email. Once accepted, you can monitor safety status and mark rescued members safe.</p>
+
+            <form id="rqFamilyAddForm" class="rq-family-add-row">
+                <input id="rqFamilyEmail" type="email" class="form-control" placeholder="Family member email" required>
+                <button type="submit" class="btn btn-warning">Send request</button>
+            </form>
+            <p id="rqFamilyMsg" class="small mb-3"></p>
+        </div>
+
+        <div class="rq-family-grid">
+            <div class="rq-family-col rq-family-col-wide rq-family-panel rq-family-panel-alert">
+                <h3><i class="fa-solid fa-triangle-exclamation text-warning me-2"></i>Trapped family members</h3>
+                <div id="rqFamilyTrapped"></div>
+            </div>
+            <div class="rq-family-col rq-family-panel">
+                <h3>Incoming requests</h3>
+                <div id="rqFamilyIncoming"></div>
+            </div>
+            <div class="rq-family-col rq-family-panel">
+                <h3>Outgoing requests</h3>
+                <div id="rqFamilyOutgoing"></div>
+            </div>
+            <div class="rq-family-col rq-family-col-wide rq-family-panel">
+                <h3>Connected family members</h3>
+                <div id="rqFamilyMembers"></div>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/js/User/family.js}"></script>
+</section>
+</body>
+</html>
