@@ -61,3 +61,23 @@
         margin-right: 0 !important;
     }
 }
+
+@media (max-width: 767.98px) {
+    .safety-icon-large {
+        margin-top: 2rem;
+    }
+
+    .safety-icon-large i {
+        font-size: 6rem !important;
+    }
+}
+
+@media (max-width: 479.98px) {
+    .safety-icon-large {
+        margin-top: 1.5rem;
+    }
+
+    .safety-icon-large i {
+        font-size: 4.5rem !important;
+    }
+}
